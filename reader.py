@@ -1,6 +1,7 @@
 import csv
 import requests
 import numpy as np
+import json
 # A tool to map REDCap export CSVs to import CSVs with different instrument formats
 
 # Input project token: 2A7FB1BE285EA4CC00BB2920F97F5865
@@ -31,6 +32,7 @@ print(output_fields)
 
 # Keys are input fields, values are output fields
 field_map = {
+    "record_id" : "record_id",
     "first_name" : "given_name",
     "last_name" : "family_name",
     "person_age" : "age"
@@ -55,9 +57,35 @@ data = {
 }
 r = requests.post('https://testcap.florey.edu.au/api/',data=data)
 print('HTTP Status: ' + str(r.status_code))
+
+print(r.json())
+
+out_json = []
 for row in r.json():
-    record_id = row[0]
-    for pair in row[1:]:
-        print(f"{pair[0]} : {pair[1]}")
-    print(row)
     
+    mapped_record = {}
+    for key in row:
+        if (key in field_map):
+            mapping = field_map[key]
+            # print(f"match: {key} -> {mapping}")
+            mapped_record[mapping] = row[key]
+
+    out_json.append(mapped_record)
+
+print(out_json)
+
+data = {
+    'token': '68836BC63FBEB3532CBDAD7636417A06',
+    'content': 'record',
+    'action': 'import',
+    'format': 'json',
+    'type': 'flat',
+    'overwriteBehavior': 'normal',
+    'forceAutoNumber': 'false',
+    'data': json.dumps(out_json),
+    'returnContent': 'count',
+    'returnFormat': 'json'
+}
+r = requests.post('https://testcap.florey.edu.au/api/',data=data)
+print('HTTP Status: ' + str(r.status_code))
+print(r.text)
