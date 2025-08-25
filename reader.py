@@ -3,7 +3,7 @@ import requests
 import numpy as np
 import json
 import xml.etree.ElementTree as ET
-import data_dictionary
+import redcap_data
 
 
 # A tool to map REDCap export CSVs to import CSVs with different instrument formats
@@ -22,16 +22,21 @@ import data_dictionary
 #     for row in reader:
 #         output_data_dictionary.append(row)
 
-input_data_dictionary = data_dictionary.get_dictionary("2A7FB1BE285EA4CC00BB2920F97F5865", 'list')
-output_data_dictionary = data_dictionary.get_dictionary("68836BC63FBEB3532CBDAD7636417A06", 'list')
+input_data_dictionary = redcap_data.get_dictionary("2A7FB1BE285EA4CC00BB2920F97F5865", 'list')
+output_data_dictionary = redcap_data.get_dictionary("68836BC63FBEB3532CBDAD7636417A06", 'list')
 
 # print(input_data_dictionary)
 
 for r in input_data_dictionary:
     print(r)
 
-input_fields = dict(x for x in np.array(input_data_dictionary)[1:,0:4:3])
-output_fields = dict(x for x in np.array(output_data_dictionary)[1:,0:4:3])
+# used to look up types
+input_fields = dict(x for x in input_data_dictionary[1:,0:4:3])
+output_fields = dict(x for x in output_data_dictionary[1:,0:4:3])
+
+# used to check for '<form>_complete' records
+form_complete_fields = np.unique(input_data_dictionary[1:,1] + "_complete")
+
 
 print("Input data fields:")
 print(input_fields)
@@ -44,7 +49,8 @@ field_map = {
     "record_id" : "record_id",
     "first_name" : "given_name",
     "last_name" : "family_name",
-    "person_age" : "age"
+    "person_age" : "age",
+    "pdf_upload" : "file_upload"
 }
 
 
@@ -70,17 +76,20 @@ print('HTTP Status: ' + str(r.status_code))
 print(r.json())
 
 out_json = []
-for row in r.json():
+for record in r.json():
     
     mapped_record = {}
-    for key in row:
-        print(f"{key} of type {input_fields[key]}")
-        if (key in field_map):
-            mapping = field_map[key]
+    for field in record:
+        if field in form_complete_fields:
+            print(f"Skipping {field}")
+            continue
+        # print(f"{field} of type {input_fields[field]}")
+        if (field in field_map):
+            mapping = field_map[field]
             # print(f"match: {key} -> {mapping}")
-            mapped_record[mapping] = row[key]
+            mapped_record[mapping] = record[field]
         else:
-            print(f"Skipping {key} with value {row[key]}")
+            print(f"Skipping {field} with value {record[field]} (no map)")
 
     out_json.append(mapped_record)
 
