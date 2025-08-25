@@ -2,27 +2,36 @@ import csv
 import requests
 import numpy as np
 import json
+import xml.etree.ElementTree as ET
+import data_dictionary
+
+
 # A tool to map REDCap export CSVs to import CSVs with different instrument formats
 
 # Input project token: 2A7FB1BE285EA4CC00BB2920F97F5865
 # Output project token: 68836BC63FBEB3532CBDAD7636417A06
 
-input_data_dictionary = []
-output_data_dictionary = []
-
-with open('InputProject_DataDictionary_2025-08-22.csv') as imp_csv:
-    reader = csv.reader(imp_csv, delimiter=',')
-    for row in reader:
-        input_data_dictionary.append(row)
+# with open('InputProject_DataDictionary_2025-08-22.csv') as imp_csv:
+#     reader = csv.reader(imp_csv, delimiter=',')
+#     for row in reader:
+#         input_data_dictionary.append(row)
 
 
-with open('OutputProject_DataDictionary_2025-08-22.csv') as imp_csv:
-    reader = csv.reader(imp_csv, delimiter=',')
-    for row in reader:
-        output_data_dictionary.append(row)
-        
-input_fields = np.array(input_data_dictionary)[1:,0]
-output_fields = np.array(output_data_dictionary)[1:,0]
+# with open('OutputProject_DataDictionary_2025-08-22.csv') as imp_csv:
+#     reader = csv.reader(imp_csv, delimiter=',')
+#     for row in reader:
+#         output_data_dictionary.append(row)
+
+input_data_dictionary = data_dictionary.get_dictionary("2A7FB1BE285EA4CC00BB2920F97F5865", 'list')
+output_data_dictionary = data_dictionary.get_dictionary("68836BC63FBEB3532CBDAD7636417A06", 'list')
+
+# print(input_data_dictionary)
+
+for r in input_data_dictionary:
+    print(r)
+
+input_fields = dict(x for x in np.array(input_data_dictionary)[1:,0:4:3])
+output_fields = dict(x for x in np.array(output_data_dictionary)[1:,0:4:3])
 
 print("Input data fields:")
 print(input_fields)
@@ -65,10 +74,13 @@ for row in r.json():
     
     mapped_record = {}
     for key in row:
+        print(f"{key} of type {input_fields[key]}")
         if (key in field_map):
             mapping = field_map[key]
             # print(f"match: {key} -> {mapping}")
             mapped_record[mapping] = row[key]
+        else:
+            print(f"Skipping {key} with value {row[key]}")
 
     out_json.append(mapped_record)
 
