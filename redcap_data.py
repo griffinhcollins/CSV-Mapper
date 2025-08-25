@@ -1,4 +1,5 @@
 import requests
+import numpy as np
 import xml.etree.ElementTree as ET
 
 
@@ -37,7 +38,7 @@ def get_dictionary(token, format):
     print('HTTP Status: ' + str(r.status_code))
     if (not reformat):
         return r
-    return list(x.split(',') for x in r.text.split('\n')[:-1])
+    return np.array(list(x.split(',') for x in r.text.split('\n')[:-1]))
 
 
 if (__name__ == '__main__'):
