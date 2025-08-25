@@ -1,6 +1,7 @@
 import requests
 import numpy as np
 import xml.etree.ElementTree as ET
+import os
 
 
 
@@ -39,6 +40,27 @@ def get_dictionary(token, format):
     if (not reformat):
         return r
     return np.array(list(x.split(',') for x in r.text.split('\n')[:-1]))
+
+def import_file(token, record_id, field_name, filename):
+    data = {
+    'token': token,
+    'content': 'file',
+    'action': 'export',
+    'record': record_id,
+    'field': field_name,
+    'event': '',
+    'returnFormat': 'json'
+    }
+    r = requests.post('https://testcap.florey.edu.au/api/',data=data)
+    print('HTTP Status: ' + str(r.status_code))
+    print(f"Filename: {filename}")
+    if (not os.path.exists("tmp/")):
+        os.makedirs("tmp/")
+    with open(f"tmp/{filename}", 'wb+') as f:
+        f.write(r.content)
+        f.close()
+    return r
+    
 
 
 if (__name__ == '__main__'):

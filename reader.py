@@ -22,8 +22,11 @@ import redcap_data
 #     for row in reader:
 #         output_data_dictionary.append(row)
 
-input_data_dictionary = redcap_data.get_dictionary("2A7FB1BE285EA4CC00BB2920F97F5865", 'list')
-output_data_dictionary = redcap_data.get_dictionary("68836BC63FBEB3532CBDAD7636417A06", 'list')
+in_token = "2A7FB1BE285EA4CC00BB2920F97F5865"
+out_token = "68836BC63FBEB3532CBDAD7636417A06"
+
+input_data_dictionary = redcap_data.get_dictionary(in_token, 'list')
+output_data_dictionary = redcap_data.get_dictionary(out_token, 'list')
 
 # print(input_data_dictionary)
 
@@ -31,18 +34,18 @@ for r in input_data_dictionary:
     print(r)
 
 # used to look up types
-input_fields = dict(x for x in input_data_dictionary[1:,0:4:3])
-output_fields = dict(x for x in output_data_dictionary[1:,0:4:3])
+input_field_types = dict(x for x in input_data_dictionary[1:,0:4:3])
+output_field_types = dict(x for x in output_data_dictionary[1:,0:4:3])
 
 # used to check for '<form>_complete' records
 form_complete_fields = np.unique(input_data_dictionary[1:,1] + "_complete")
 
 
 print("Input data fields:")
-print(input_fields)
+print(input_field_types)
 
 print("Export data fields:")
-print(output_fields)
+print(output_field_types)
 
 # Keys are input fields, values are output fields
 field_map = {
@@ -57,7 +60,7 @@ field_map = {
 # Get data from input project
 import requests
 data = {
-    'token': '2A7FB1BE285EA4CC00BB2920F97F5865',
+    'token': in_token,
     'content': 'record',
     'action': 'export',
     'format': 'json',
@@ -85,6 +88,12 @@ for record in r.json():
             continue
         # print(f"{field} of type {input_fields[field]}")
         if (field in field_map):
+            if input_field_types[field] == 'file':
+                if record[field] == '':
+                    continue
+                redcap_data.import_file(in_token, record['record_id'], field, record[field])
+                print(f"Wrote {field} {record[field]} to tmp")
+                continue
             mapping = field_map[field]
             # print(f"match: {key} -> {mapping}")
             mapped_record[mapping] = record[field]
@@ -96,7 +105,7 @@ for record in r.json():
 print(out_json)
 
 data = {
-    'token': '68836BC63FBEB3532CBDAD7636417A06',
+    'token': out_token,
     'content': 'record',
     'action': 'import',
     'format': 'json',
