@@ -7,7 +7,7 @@ import os
 
 
 
-def project_xml(token):
+def project_xml(token, testcap = False):
 
     data = {
         'token': token,
@@ -19,12 +19,12 @@ def project_xml(token):
         'exportDataAccessGroups': 'false',
         'returnFormat': 'json'
     }
-    r = requests.post('https://testcap.florey.edu.au/api/',data=data)
-    print('HTTP Status: ' + str(r.status_code))
+    r = requests.post(f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/',data=data)
+    print('XML HTTP Status: ' + str(r.status_code))
     return ET.fromstring(r.text)
     
         
-def get_dictionary(token, format):
+def get_dictionary(token, format, testcap = False):
     reformat = False
     if (format == 'list'):
         reformat = True
@@ -35,31 +35,47 @@ def get_dictionary(token, format):
         'format': format,
         'returnFormat': 'json'
     }
-    r = requests.post('https://testcap.florey.edu.au/api/',data=data)
-    print('HTTP Status: ' + str(r.status_code))
+    r = requests.post(f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/',data=data)
+    print('Dictionary HTTP Status: ' + str(r.status_code))
     if (not reformat):
-        return r
+        return np.array(r)
     return np.array(list(x.split(',') for x in r.text.split('\n')[:-1]))
 
-def import_file(token, record_id, field_name, filename):
+def import_file(token, record_id, field_name, filename, testcap = False):
     data = {
     'token': token,
     'content': 'file',
     'action': 'export',
     'record': record_id,
     'field': field_name,
-    'event': '',
     'returnFormat': 'json'
     }
-    r = requests.post('https://testcap.florey.edu.au/api/',data=data)
-    print('HTTP Status: ' + str(r.status_code))
-    print(f"Filename: {filename}")
+    r = requests.post(f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/',data=data)
+    print('Import HTTP Status: ' + str(r.status_code))
+    # print(f"Filename: {filename}")
     if (not os.path.exists("tmp/")):
         os.makedirs("tmp/")
     with open(f"tmp/{filename}", 'wb+') as f:
         f.write(r.content)
         f.close()
     return r
+
+
+def export_file(token, record_id, field_name, filename, testcap = False):
+    data = {
+        'token': token,
+        'content': 'file',
+        'action': 'import',
+        'record': record_id,
+        'field': field_name,
+        'event': '',
+        'returnFormat': 'json'
+    }
+    with open(f"tmp/{filename}", 'rb') as file_obj:
+        r = requests.post(f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/',data=data,files={'file':file_obj})
+        file_obj.close()
+    print('Export HTTP Status: ' + str(r.status_code))
+
     
 
 
