@@ -2,6 +2,7 @@ import requests
 import numpy as np
 import xml.etree.ElementTree as ET
 import os
+import csv
 
 
 
@@ -24,31 +25,41 @@ def project_xml(token, testcap = False):
     return ET.fromstring(r.text)
     
         
-def get_dictionary(token, format, testcap = False):
+def get_dictionary(token, testcap = False):
     reformat = False
-    if (format == 'list'):
-        reformat = True
-        format = 'csv'
     data = {
         'token': token,
         'content': 'metadata',
-        'format': format,
+        'format': 'csv',
         'returnFormat': 'json'
     }
     r = requests.post(f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/',data=data)
     print('Dictionary HTTP Status: ' + str(r.status_code))
-    if (not reformat):
-        return np.array(r)
-    return np.array(list(x.split(',') for x in r.text.split('\n')[:-1]))
+    
+    
+    csv_raw = []
+    
+    for row in r.text.split('\n')[:-1]:
+        csv_raw.append(row)
+    
+    array = []
+    for read_row in csv.reader(csv_raw):
+        array.append(read_row)
 
-def import_file(token, record_id, field_name, filename, testcap = False):
+    return np.array(array)
+    
+    
+    # return 
+
+def import_file(token, record_id, field_name, filename, testcap = False, event = ""):
     data = {
-    'token': token,
-    'content': 'file',
-    'action': 'export',
-    'record': record_id,
-    'field': field_name,
-    'returnFormat': 'json'
+        'token': token,
+        'content': 'file',
+        'action': 'export',
+        'record': record_id,
+        'field': field_name,
+        'event' : event,
+        'returnFormat': 'json'
     }
     r = requests.post(f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/',data=data)
     print('Import HTTP Status: ' + str(r.status_code))
@@ -61,16 +72,17 @@ def import_file(token, record_id, field_name, filename, testcap = False):
     return r
 
 
-def export_file(token, record_id, field_name, filename, testcap = False):
+def export_file(token, record_id, field_name, filename, testcap = False, event = ""):
     data = {
         'token': token,
         'content': 'file',
         'action': 'import',
         'record': record_id,
         'field': field_name,
-        'event': '',
+        'event' : event,
         'returnFormat': 'json'
     }
+    print(data)
     with open(f"tmp/{filename}", 'rb') as file_obj:
         r = requests.post(f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/',data=data,files={'file':file_obj})
         file_obj.close()
@@ -80,5 +92,5 @@ def export_file(token, record_id, field_name, filename, testcap = False):
 
 
 if (__name__ == '__main__'):
-    print(get_dictionary('2A7FB1BE285EA4CC00BB2920F97F5865', 'csv'))
+    print(get_dictionary('2A7FB1BE285EA4CC00BB2920F97F5865'))
     # project_xml('2A7FB1BE285EA4CC00BB2920F97F5865')
