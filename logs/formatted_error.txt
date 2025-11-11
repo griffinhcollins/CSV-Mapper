@@ -1,0 +1,7 @@
+"3961-1","investproduct_gmp","3","The value is not a valid category for investproduct_gmp"
+"3961-6","check_insurance","3","The value is not a valid category for check_insurance"
+"3961-7","investproduct_gmp","3","The value is not a valid category for investproduct_gmp"
+"3963-4","full_au_sites_num","3 - updated to reflect Florey, Austin and Flinders sites. ","The value you provided could not be validated because it does not follow the expected format. Please try again."
+"3975-1","full_au_sites_num","single site","The value you provided could not be validated because it does not follow the expected format. Please try again."
+"4190-1","check_insurance","3","The value is not a valid category for check_insurance"
+"4193-1","full_au_sites_num","6-8","The value you provided could not be validated because it does not follow the expected format. Please try again."

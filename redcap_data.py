@@ -7,7 +7,7 @@ import csv
 
 class FileUploadInfo:
     def __init__(
-        self, study_id, event, field, repeat_index, mapped_event, mapped_field
+        self, study_id, event, field, repeat_index, mapped_event, mapped_field, manual_save = False
     ) -> None:
         self.trial_no = study_id
         self.event = event
@@ -15,6 +15,7 @@ class FileUploadInfo:
         self.repeat_index = repeat_index
         self.mapped_event = mapped_event
         self.mapped_field = mapped_field
+        self.manual_save = manual_save
         pass
 
 
@@ -133,26 +134,30 @@ def import_file(token, filedata: FileUploadInfo, testcap=False):
 
     print("Import HTTP Status: " + str(r.status_code))
     # print(f"Filename: {filename}")
-    if not os.path.exists("tmp/"):
-        os.makedirs("tmp/")
-    with open(f"tmp/{filename}", "wb+") as f:
+    if filedata.manual_save:
+        path = f"saved_folders/{filedata.trial_no}/{filedata.event}/{filedata.field}/"
+    else:
+        path = "tmp/"
+    if not os.path.exists(path):
+        os.makedirs(path)
+    with open(path + filename, "wb+") as f:
         f.write(r.content)
         f.close()
-    return filename
+    return path + filename
 
 
-def export_file(token, filedata: FileUploadInfo, filename, testcap=False):
+def export_file(token, filedata: FileUploadInfo, filepath, testcap=False):
     data = {
         "token": token,
         "content": "file",
         "action": "import",
         "record": filedata.trial_no,
-        "field": filedata.field,
-        "event": filedata.event,
+        "field": filedata.mapped_field,
+        "event": filedata.mapped_event,
         "repeat_instance": filedata.repeat_index,
         "returnFormat": "json",
     }
-    with open(f"tmp/{filename}", "rb") as file_obj:
+    with open(filepath, "rb") as file_obj:
         r = requests.post(
             f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/',
             data=data,
@@ -160,6 +165,12 @@ def export_file(token, filedata: FileUploadInfo, filename, testcap=False):
         )
         file_obj.close()
     print("Export HTTP Status: " + str(r.status_code))
+    if r.status_code != 200:
+        with open("logs/file_upload_errors.txt", "a+") as e:
+            e.write(str(data))
+            e.write(str(r.json()))
+            e.write('\n')
+            print("Wrote error to file_upload_errors.txt")
     return r
 
 

@@ -4,6 +4,7 @@ import numpy as np
 import json
 import redcap_data
 from redcap_data import FileUploadInfo
+from map_generator import get_basic_map
 
 
 # A tool to map REDCap export CSVs to import CSVs with different instrument formats
@@ -24,22 +25,20 @@ from redcap_data import FileUploadInfo
 
 
 #   REDCAP PROJECT TOKENS
-#   Current Prod Token (DANGER):        622963362CB2339A4DF099C171BA7492
-#   New Setup Token (DANGER):           F1718768DEA7197DDA9BD3A2EF862195
+#   Current Prod Token (DANGER):                622963362CB2339A4DF099C171BA7492
+#   New Setup Token (DANGER):                   F1718768DEA7197DDA9BD3A2EF862195
 #
-#   REDCap-created duplicate of prod:   AAF352AC73709A6AE89C45881A227FBB
+#   REDCap-created duplicate of prod:           AAF352AC73709A6AE89C45881A227FBB
 #
-#   Test export target for prod:        A101E9985884C4423C2508B396784378
-#   2nd Test Export:                    B143B1B57E6F071FC41C5D08F9226EFB
-#
+#   Test export target for prod:                A101E9985884C4423C2508B396784378
+#   2nd Test Export:                            B143B1B57E6F071FC41C5D08F9226EFB
+#   3rd Test Export:                            490755B7DA96CF2C7392DD9D2879238D
+
+#   Clinical Studies Registry V3 - Test Copy 2: 497E85C2071B05AD0F31C382839F3E72
 
 
-in_token = (
-    "AAF352AC73709A6AE89C45881A227FBB"  # the project that data will be imported FROM
-)
-out_token = (
-    "B143B1B57E6F071FC41C5D08F9226EFB"  # the project that data will be exported TO
-)
+in_token = "AAF352AC73709A6AE89C45881A227FBB"  # the project that data will be imported FROM
+out_token = "490755B7DA96CF2C7392DD9D2879238D"  # the project that data will be exported TO
 testcap = False
 
 dangerous_tokens = [
@@ -84,18 +83,8 @@ with open("logs/out_fields.json", "w+") as o:
 
 
 # Keys are input fields, values are output fields
-event_field_map = {
-    ("for_participating_arm_1", "cv_upload"): ("study_details_arm_1", "cv_upload"),
-    ("for_participating_arm_1", "ich_upload"): ("study_details_arm_1", "ich_upload"),
-    ("contracts_and_insu_arm_1", "agreements_future"): (
-        "cgc_review_arm_1",
-        "agreements_future",
-    ),
-    ("contracts_and_insu_arm_1", "agreements_other"): (
-        "cgc_review_arm_1",
-        "agreements_other",
-    ),
-}
+event_field_map = get_basic_map()
+
 
 
 def AddFieldRange(in_tup_prefix: tuple, out_tup_prefix: tuple, range_e: tuple):
@@ -112,9 +101,7 @@ def AddFieldRange(in_tup_prefix: tuple, out_tup_prefix: tuple, range_e: tuple):
 #     (0, 12),
 # )
 
-auto_match = (
-    True  # whether the mapper should automatially map fields that have identical names
-)
+auto_match = False  # whether the mapper should automatially map fields that have identical names
 
 
 # Get data from input project
@@ -132,13 +119,11 @@ data = {
     "exportDataAccessGroups": "false",
     "returnFormat": "json",
 }
-r = requests.post(
-    f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/', data=data
-)
-print("Data Import HTTP Status: " + str(r.status_code))
+input_import = requests.post(f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/', data=data)
+print("Data Import HTTP Status: " + str(input_import.status_code))
 
 
-in_json = r.json()
+in_json = input_import.json()
 
 with open("logs/input_data.json", "w+") as o:
     json.dump(in_json, o)
@@ -150,22 +135,34 @@ out_json = []
 
 file_uploads: list[FileUploadInfo] = []
 
+print("Preparing Export...")
+
+concat_tracking = {}
+if_tracking = {}
+
+manual_event_fields = {}
+
 with open("logs/maplog.txt", "w+") as o:
 
-    for field_data in r.json():
+    for field_data in input_import.json():
         trial_no = field_data["record"]
         field = field_data["field_name"]
         event = field_data["redcap_event_name"]
+        
+        value = field_data["value"]
+        if event in manual_event_fields.keys():
+            manual_event_fields[event].append(field)
+        else:
+            manual_event_fields[event] = []
 
         if field in form_complete_fields:
             o.write(f"Skipping {field} (form complete)\n")
             continue
-        if not field_data["value"]:
+        if value is None or value == "":
             o.write(f"Skipping {field} (input empty)\n")
             continue
 
         # print(f"{field} of type {input_fields[field]}")
-
         mapped_event_name = ""
         mapped_field_name = ""
         if (
@@ -178,55 +175,182 @@ with open("logs/maplog.txt", "w+") as o:
             # Auto match means that if there exists a field/event pair in both in and out that match, they will map
             mapped_field_name = field
             mapped_event_name = event
+            
 
         if (event, field) in event_field_map:
+
             # if the input field is in the field map, that overrides the auto match
-            o.write(f"Using manual mapping for following: ")
-            (mapped_event_name, mapped_field_name) = event_field_map[(event, field)]
-
-        if mapped_field_name == "":
             o.write(
-                f"Skipping {field} from event {event} with value {field_data["value"]} (no map)\n"
+                f"Trial {trial_no}: Using manual mapping for {field} from event {event} with value {field_data["value"]}\n"
             )
-            continue
+            repeat_instrument = event_field_map[(event, field)][0]
+            for mapping in event_field_map[(event, field)][1]:
+                remap = True  # As of yet we don't know if this is the main mapping (in which case we want to remap) or a plus mapping (in which case we can toggle this off)
+                manual_save = False
 
-        # We have found a match
-        if mapped_field_name not in output_field_types.keys():
-            o.write(
-                f"Skipping {field} (couldn't find {mapped_field_name} in export project)\n"
-            )
-            continue
+                if mapping[0] == "remap":
+                    continue  # the existence of a remap does nothing on its own - it'll be used when the main mapping is parsed
+                if mapping[0] == "concat":
+                    # See if [tracking_tools_arm_1][notes_for_followup] exists yet for this trial
+                    if trial_no not in concat_tracking:
+                        concat_tracking[trial_no] = len(out_json)
+                        out_json.append(
+                            {
+                                "record": trial_no,
+                                "redcap_event_name": "tracking_tools_arm_1",
+                                "redcap_repeat_instrument": "",
+                                "redcap_repeat_instance": "",
+                                "field_name": "notes_for_followup",
+                                "value": "",
+                            }
+                        )
+                    o.write(f"Concatenating {value} into {trial_no}'s tracking field.\n")
+                    out_json[concat_tracking[trial_no]]["value"] += f"{field}: {value}\n"
+                    continue
 
-        # File maps need to be done afterwards, as the records we want to upload to don't exist yet.
-        if input_field_types[field] == "file":
-            file_uploads.append(
-                FileUploadInfo(
-                    trial_no,
-                    event,
-                    field,
-                    field_data["redcap_repeat_instance"],
-                    mapped_event_name,
-                    mapped_field_name,
+                if mapping[0] == "manual":
+                    # Save to a folder (this should be a file)
+                    file_uploads.append(
+                        FileUploadInfo(
+                            trial_no,
+                            event,
+                            field,
+                            field_data["redcap_repeat_instance"],
+                            "",
+                            "",
+                            True,
+                        )
+                    )
+                    break
+                if mapping[0] == "IF":
+                    # Unpack the ifmap
+                    ifmap = mapping[1]
+                    if value not in ifmap:
+                        o.write(f"IFMAP no match: {value} not in {ifmap}, skipping with no action\n")
+                        continue
+                    (mapped_event, mapped_field, value) = ifmap[value]
+                    if value == "i":
+                        # We need to increment [application][oseas_sites_num_2]
+                        # First, check if it exists already
+                        if trial_no not in if_tracking:
+                            if_tracking[trial_no] = len(out_json)
+                            out_json.append(
+                                {
+                                    "record": trial_no,
+                                    "redcap_event_name": "governance_applica_arm_1",
+                                    "redcap_repeat_instrument": "application",
+                                    "redcap_repeat_instance": "",
+                                    "field_name": "oseas_sites_num_2",
+                                    "value": 0,
+                                }
+                            )
+                        o.write(
+                            f"IF CLAUSE: Incrementing [application][oseas_sites_num_2] by 1 for {trial_no} from {event} {field}.\n"
+                        )
+                        out_json[if_tracking[trial_no]]["value"] += 1
+                    else:
+                        # set based on the value
+                        out_json.append(
+                            {
+                                "record": trial_no,
+                                "redcap_event_name": mapped_event,
+                                "redcap_repeat_instrument": "" if field_data["redcap_repeat_instrument"] == "" else repeat_instrument,
+                                "redcap_repeat_instance": field_data["redcap_repeat_instance"],
+                                "field_name": mapped_field,
+                                "value": value,
+                            }
+                        )
+                        o.write(f"IF CLAUSE: setting {mapped_event} {mapped_field} to {value}")
+                    continue
+
+                # Regular or plus mapping
+                if len(mapping) == 2:
+                    # regular mapping
+                    (mapped_event_name, mapped_field_name) = mapping
+
+                    o.write(
+                        f"Trial {trial_no}: Mapping {field} to {mapped_field_name} in event {mapped_event_name} with value {value}\n"
+                    )
+
+                elif len(mapping) == 3:
+                    (mapped_event_name, mapped_field_name) = (mapping[0], mapping[1])
+                    value = mapping[2]
+                    # plus mapping
+                    remap = False
+                    o.write(
+                        f"Trial {trial_no}: Mapping {field} to {mapped_field_name} in event {mapped_event_name} with value {mapping[2]} (PLUS MAPPING)\n"
+                    )
+
+                else:
+                    # something's wrong
+                    o.write(f"ERROR: weird mapping: {mapping}\n")
+                    continue
+
+                if mapped_field_name == "":
+                    o.write(f"Skipping (no map)\n")
+                    continue
+
+                # We have found a match
+                if mapped_field_name not in output_field_types.keys():
+                    o.write(
+                        f"Skipping {field} (couldn't find {mapped_field_name} in export project)\n"
+                    )
+                    continue
+
+                # File maps need to be done afterwards, as the records we want to upload to don't exist yet.
+                if input_field_types[field] == "file":
+                    file_uploads.append(
+                        FileUploadInfo(
+                            trial_no,
+                            event,
+                            field,
+                            field_data["redcap_repeat_instance"],
+                            mapped_event_name,
+                            mapped_field_name,
+                        )
+                    )
+                    # continue
+
+                    # Map everything else
+                    # print(f"match: {key} -> {mapping}")
+                # check if there's a remap if this is the main mapping
+                if remap:
+                    for remapcheck in event_field_map[(event, field)]:
+                        if remapcheck[0] == "remap":
+                            # Change the value
+                            mapped = False
+                            for relation in remapcheck[1]:
+                                if str.startswith(relation, field_data["value"]):
+                                    o.write(
+                                        f"Replacement mapping: swapping {value} for {relation[2:]}.\n"
+                                    )
+                                    value = relation[2:]
+                                    mapped = True
+                                    break
+                            if not mapped:
+                                o.write(
+                                    f"Skipping unexpected replacement mapping input of {value}.\n"
+                                )
+                                value = "NOTUSED"
+                                break
+                if value == "NOTUSED":
+                    continue
+                out_json.append(
+                    {
+                        "record": trial_no,
+                        "redcap_event_name": mapped_event_name,
+                        "redcap_repeat_instrument": repeat_instrument,
+                        "redcap_repeat_instance": field_data["redcap_repeat_instance"],
+                        "field_name": mapped_field_name,
+                        "value": value,
+                    }
                 )
-            )
-            # continue
+        else:
+            o.write(f"Couldn't find {(event, field)}\n")
 
-        # Map everything else
-        # print(f"match: {key} -> {mapping}")
-        o.write(f"Mapping {field} to {mapped_field_name}\n")
-
-        out_json.append(
-            {
-                "record": trial_no,
-                "redcap_event_name": mapped_event_name,
-                "redcap_repeat_instrument": field_data["redcap_repeat_instrument"],
-                "redcap_repeat_instance": field_data["redcap_repeat_instance"],
-                "field_name": mapped_field_name,
-                "value": field_data["value"],
-            }
-        )
-
-
+print(f"Dumping field data to event_field_map.json")
+with open("logs/event_field_map.json", "w+") as o:
+    json.dump(manual_event_fields, o)
 with open("logs/output_data.json", "w+") as o:
     json.dump(out_json, o)
 
@@ -242,21 +366,19 @@ data = {
     "returnContent": "count",
     "returnFormat": "json",
 }
-r = requests.post(
-    f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/', data=data
-)
-print("Data Export HTTP Status: " + str(r.status_code))
-if str(r.status_code) != "200":
+input_import = requests.post(f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/', data=data)
+print("Data Export HTTP Status: " + str(input_import.status_code))
+if str(input_import.status_code) != "200":
     with open("logs/error.json", "w+") as o:
-        json.dump(r.json(), o)
+        json.dump(input_import.json(), o)
         print("Wrote raw error to error.json")
     with open("logs/formatted_error.txt", "w+") as o:
-        errortext = r.json()["error"]
+        errortext = input_import.json()["error"]
         o.write(errortext)
         print("Wrote formatted error to formatted_error.txt")
     quit()
 else:
-    print(f"Successfully imported {r.json()["count"]} records")
+    print(f"Successfully imported {input_import.json()["count"]} records")
 
 print("Beginning file transfer")
 
@@ -265,10 +387,11 @@ for file_upload in file_uploads:
     field_name = file_upload.field
     mapped_field = file_upload.mapped_field
     event = file_upload.event
-    print(f"Writing {field_name} to tmp")
-    filename = redcap_data.import_file(in_token, file_upload)
-    print(f"Wrote {filename} to tmp")
-    print(f"Uploading {mapped_field}: {filename} to project")
-    redcap_data.export_file(out_token, file_upload, filename)
-    print(f"Deleting temp file {filename}")
-    os.remove(f"tmp/{filename}")
+    print(f"Downloading {field_name}...")
+    filepath = redcap_data.import_file(in_token, file_upload)
+    print(f"Wrote {field_name} to {filepath}")
+    if not file_upload.manual_save:
+        print(f"Uploading {mapped_field}: {filepath} to project")
+        redcap_data.export_file(out_token, file_upload, filepath)
+        print(f"Deleting temp file {filepath}")
+        os.remove(filepath)
