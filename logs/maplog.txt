@@ -12,8 +12,12 @@ Trial 1: Mapping chief_investigator to ix_label_1 in event eoi_arm_1 with value 
 Skipping study_details_complete (form complete)
 Trial 1: Using manual mapping for trial_no from event study_details_arm_1 with value 1
 Trial 1: Mapping trial_no to trial_no in event eoi_arm_1 with value 1
+Trial 1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3960-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3960-1
 Trial 3960-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3960-1
+Trial 3960-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3960-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3960-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3960-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3960-1: Using manual mapping for full_title from event study_details_arm_1 with value Advanced Functional MRI for targeted surgery in Focal Epilepsy: a randomised Controlled Trial (AFFECT)
@@ -73,6 +77,8 @@ Skipping cgc_review_complete (form complete)
 Couldn't find ('cgc_review_arm_1', 'trial_no')
 Trial 3960-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3960-2
 Trial 3960-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3960-2
+Trial 3960-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3960-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3960-2: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3960-2: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3960-2: Using manual mapping for full_title from event study_details_arm_1 with value Clinical audit of bottom-of-the-sulcus dysplasia in a series of epilepsy surgical cases
@@ -102,6 +108,8 @@ Skipping governance_application_complete (form complete)
 Skipping governance_approval_complete (form complete)
 Trial 3960-3: Using manual mapping for trial_no from event study_details_arm_1 with value 3960-3
 Trial 3960-3: Mapping trial_no to trial_no in event eoi_arm_1 with value 3960-3
+Trial 3960-3: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3960-3: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3960-3: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3960-3: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3960-3: Using manual mapping for full_title from event study_details_arm_1 with value Structure and function of the brain in patients with epilepsy and controls
@@ -134,6 +142,8 @@ Skipping governance_application_complete (form complete)
 Skipping governance_approval_complete (form complete)
 Trial 3960-4: Using manual mapping for trial_no from event study_details_arm_1 with value 3960-4
 Trial 3960-4: Mapping trial_no to trial_no in event eoi_arm_1 with value 3960-4
+Trial 3960-4: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3960-4: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3960-4: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3960-4: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3960-4: Using manual mapping for full_title from event study_details_arm_1 with value Functional and structural connectivity in Progressive Myoclonus Epilepsy
@@ -196,6 +206,8 @@ Trial 3960-5: Mapping name_ethics to ethics_name in event governance_applica_arm
 Skipping study_details_complete (form complete)
 Trial 3960-5: Using manual mapping for trial_no from event study_details_arm_1 with value 3960-5
 Trial 3960-5: Mapping trial_no to trial_no in event eoi_arm_1 with value 3960-5
+Trial 3960-5: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3960-5: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3960-5: Using manual mapping for ci_phone from event study_details_arm_1 with value +61417516105
 Trial 3960-5: Mapping ci_phone to ix_phone_1 in event eoi_arm_1 with value +61417516105
 Trial 3960-5: Using manual mapping for contact_email_1 from event study_details_arm_1 with value david.vaughan@florey.edu.au
@@ -318,6 +330,8 @@ Trial 3960-6: Mapping name_ethics to ethics_name in event governance_applica_arm
 Skipping study_details_complete (form complete)
 Trial 3960-6: Using manual mapping for trial_no from event study_details_arm_1 with value 3960-6
 Trial 3960-6: Mapping trial_no to trial_no in event eoi_arm_1 with value 3960-6
+Trial 3960-6: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3960-6: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'ip_y_n')
 Skipping study_intervention_complete (form complete)
 Trial 3960-6: Using manual mapping for trial_phase from event study_details_arm_1 with value 4
@@ -1382,6 +1396,8 @@ Trial 3960-7: Mapping letter to ethics_upload in event governance_applica_arm_1 
 Skipping study_details_complete (form complete)
 Trial 3960-7: Using manual mapping for trial_no from event study_details_arm_1 with value 3960-7
 Trial 3960-7: Mapping trial_no to trial_no in event eoi_arm_1 with value 3960-7
+Trial 3960-7: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3960-7: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3960-7: Using manual mapping for intervention_yn from event study_details_arm_1 with value 2
 Trial 3960-7: Mapping intervention_yn to tga_needed in event governance_applica_arm_1 with value 2
 Couldn't find ('study_details_arm_1', 'ip_y_n')
@@ -1552,6 +1568,8 @@ Trial 3960-7: Using manual mapping for amend_picf_pricf10 from event for_partici
 Skipping amendment_applications_complete (form complete)
 Trial 3961-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3961-1
 Trial 3961-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3961-1
+Trial 3961-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3961-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3961-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-02
 Trial 3961-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-02
 Trial 3961-1: Using manual mapping for full_title from event study_details_arm_1 with value A Phase II/III Randomized, Double-blind, Placebo-Controlled, Cognitive Endpoint, Multi-Center  Study of  Potential Disease Modifying Therapies in Individuals at Risk for and with Dominantly Inherited Alzheimer's Disease (DIAN-TU)
@@ -2512,6 +2530,8 @@ Concatenating 1 into 3961-1's tracking field.
 Trial 3961-1: Using manual mapping for am_letter_copy from event for_participating_arm_1 with value 121634
 Trial 3961-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3961-2
 Trial 3961-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3961-2
+Trial 3961-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3961-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3961-2: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3961-2: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3961-2: Using manual mapping for full_title from event study_details_arm_1 with value The Australian Imaging Biomarkers and Lifestyle (AIBL) Flagship Study of Ageing
@@ -2789,6 +2809,8 @@ Trial 3961-2: Using manual mapping for amend_picf_pricf1 from event for_particip
 Trial 3961-2: Using manual mapping for amend_picf_pricf2 from event for_participating_arm_1 with value 121801
 Trial 3961-3: Using manual mapping for trial_no from event study_details_arm_1 with value 3961-3
 Trial 3961-3: Mapping trial_no to trial_no in event eoi_arm_1 with value 3961-3
+Trial 3961-3: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3961-3: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3961-3: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3961-3: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3961-3: Using manual mapping for full_title from event study_details_arm_1 with value Dominantly Inherited Alzheimer Network Longitudinal Study (DIAN-L)
@@ -2835,6 +2857,8 @@ Skipping governance_application_complete (form complete)
 Skipping governance_approval_complete (form complete)
 Trial 3961-4: Using manual mapping for trial_no from event study_details_arm_1 with value 3961-4
 Trial 3961-4: Mapping trial_no to trial_no in event eoi_arm_1 with value 3961-4
+Trial 3961-4: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3961-4: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3961-4: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3961-4: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3961-4: Using manual mapping for full_title from event study_details_arm_1 with value Protocol H8A-MC-LZAZ(e)/ADC-040-A4 Anti-Amyloid Treatment in Asymptomatic Alzheimer's Disease                   (A4 Study)
@@ -2974,6 +2998,8 @@ Skipping annual_reporting_complete (form complete)
 Couldn't find ('annual_reporting_arm_1', 'trial_no')
 Trial 3961-5: Using manual mapping for trial_no from event study_details_arm_1 with value 3961-5
 Trial 3961-5: Mapping trial_no to trial_no in event eoi_arm_1 with value 3961-5
+Trial 3961-5: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3961-5: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3961-5: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3961-5: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3961-5: Using manual mapping for short_title from event study_details_arm_1 with value ADNeT Screening
@@ -3202,6 +3228,8 @@ Trial 3961-6: Mapping prem_used to facilities_use in event eoi_arm_1 with value 
 Skipping study_details_complete (form complete)
 Trial 3961-6: Using manual mapping for trial_no from event study_details_arm_1 with value 3961-6
 Trial 3961-6: Mapping trial_no to trial_no in event eoi_arm_1 with value 3961-6
+Trial 3961-6: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3961-6: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'ip_y_n')
 Trial 3961-6: Using manual mapping for ip_type from event study_details_arm_1 with value The first study drug to be investigated under this study protocol will be Remternetug (LY3372993). 
 16May2025
@@ -3611,6 +3639,8 @@ Trial 3961-7: Mapping prem_used to facilities_use in event eoi_arm_1 with value 
 Skipping study_details_complete (form complete)
 Trial 3961-7: Using manual mapping for trial_no from event study_details_arm_1 with value 3961-7
 Trial 3961-7: Mapping trial_no to trial_no in event eoi_arm_1 with value 3961-7
+Trial 3961-7: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3961-7: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3961-7: Using manual mapping for protocol_upload_sponsor from event study_details_arm_1 with value 123225
 Trial 3961-7: Mapping protocol_upload_sponsor to protocol_upload in event governance_applica_arm_1 with value 123225
 Trial 3961-7: Using manual mapping for part_sponsor_1 from event study_details_arm_1 with value The Centre for Eye Research Australia (CERA)
@@ -3885,6 +3915,8 @@ Couldn't find ('study_details_arm_1', 'other_loc')
 Skipping study_details_complete (form complete)
 Trial 3961-8: Using manual mapping for trial_no from event study_details_arm_1 with value 3961-8
 Trial 3961-8: Mapping trial_no to trial_no in event eoi_arm_1 with value 3961-8
+Trial 3961-8: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3961-8: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'ip_y_n')
 Skipping study_intervention_complete (form complete)
 Trial 3961-8: Using manual mapping for registry from event study_details_arm_1 with value 0
@@ -3959,6 +3991,8 @@ Trial 3961-9: Mapping prem_contract to clinics_form_yn in event governance_appli
 Skipping study_details_complete (form complete)
 Trial 3961-9: Using manual mapping for trial_no from event study_details_arm_1 with value 3961-9
 Trial 3961-9: Mapping trial_no to trial_no in event eoi_arm_1 with value 3961-9
+Trial 3961-9: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3961-9: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3961-9: Using manual mapping for full_title from event study_details_arm_1 with value A multicenter, prospective, non-interventional study to determine the cutoff and 
 clinical performance of the Elecsys® Amyloid Plasma Panel and its component 
 assays.
@@ -3969,6 +4003,8 @@ Couldn't find ('study_details_arm_1', 'trial_type')
 Couldn't find ('study_details_arm_1', 'trial_type_other')
 Trial 3962-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3962-1
 Trial 3962-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3962-1
+Trial 3962-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3962-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3962-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3962-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3962-1: Using manual mapping for full_title from event study_details_arm_1 with value Cognition And Neocortical Volume After Stroke Study (CANVAS): Is stroke neurodegenerative? A longitudinal study examining changes in brain volume and cognition after stroke
@@ -4045,6 +4081,8 @@ Couldn't find ('data_storage_and_a_arm_1', 'trial_no')
 Skipping data_storage_and_archive_complete (form complete)
 Trial 3962-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3962-2
 Trial 3962-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3962-2
+Trial 3962-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3962-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3962-2: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3962-2: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3962-2: Using manual mapping for full_title from event study_details_arm_1 with value How does heart disease affect cognition and brain structural integrity in diabetes?
@@ -4209,6 +4247,8 @@ Trial 3962-2: Mapping final_report_yn to final_report_yn in event postapproval_a
 Skipping annual_reporting_complete (form complete)
 Trial 3962-3: Using manual mapping for trial_no from event study_details_arm_1 with value 3962-3
 Trial 3962-3: Mapping trial_no to trial_no in event eoi_arm_1 with value 3962-3
+Trial 3962-3: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3962-3: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3962-3: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3962-3: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3962-3: Using manual mapping for full_title from event study_details_arm_1 with value Post Ischaemic Stroke Cardiovascular Exercise Study - Zoom Delivered Intervention Against Cognitive Decline (PISCES-ZODIAC)
@@ -4472,6 +4512,8 @@ Skipping annual_reporting_complete (form complete)
 Couldn't find ('annual_reporting_arm_1', 'trial_no')
 Trial 3962-4: Using manual mapping for trial_no from event study_details_arm_1 with value 3962-4
 Trial 3962-4: Mapping trial_no to trial_no in event eoi_arm_1 with value 3962-4
+Trial 3962-4: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3962-4: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3962-4: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3962-4: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3962-4: Using manual mapping for full_title from event study_details_arm_1 with value Chronobiology of dementia: a cross-sectional observational study of the determinants of sleep and circadian rhythm disruption in common dementia syndromes
@@ -4569,6 +4611,8 @@ Skipping governance_application_complete (form complete)
 Skipping governance_approval_complete (form complete)
 Trial 3962-5: Using manual mapping for trial_no from event study_details_arm_1 with value 3962-5
 Trial 3962-5: Mapping trial_no to trial_no in event eoi_arm_1 with value 3962-5
+Trial 3962-5: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3962-5: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3962-5: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3962-5: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3962-5: Using manual mapping for full_title from event study_details_arm_1 with value The Effect of Pre-Stroke Physical Activity and Skeletal Muscle Mass on Stroke Outcomes: An Observational Study (PrSMA)
@@ -4647,6 +4691,8 @@ Skipping governance_application_complete (form complete)
 Skipping governance_approval_complete (form complete)
 Trial 3962-6: Using manual mapping for trial_no from event study_details_arm_1 with value 3962-6
 Trial 3962-6: Mapping trial_no to trial_no in event eoi_arm_1 with value 3962-6
+Trial 3962-6: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3962-6: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3962-6: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3962-6: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3962-6: Using manual mapping for full_title from event study_details_arm_1 with value ASPirin in Reducing Events in the Elderly- Atrial Fibrillation Study (ASPREE-AF)
@@ -4687,6 +4733,8 @@ Skipping governance_application_complete (form complete)
 Skipping governance_approval_complete (form complete)
 Trial 3963-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3963-1
 Trial 3963-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3963-1
+Trial 3963-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3963-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3963-1: Using manual mapping for today from event study_details_arm_1 with value 2021-11-08
 Trial 3963-1: Mapping today to today in event governance_applica_arm_1 with value 2021-11-08
 Trial 3963-1: Using manual mapping for full_title from event study_details_arm_1 with value Phase 3multi arm, multi stage, covariate adjusted, response  adaptive randomised trial to Determine Optimal early mobility training after stroke  (AVERT DOSE)
@@ -6319,6 +6367,8 @@ Trial 3963-1: Using manual mapping for acknowledgement_sent from event annual_re
 Concatenating 0 into 3963-1's tracking field.
 Trial 3963-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3963-2
 Trial 3963-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3963-2
+Trial 3963-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3963-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3963-2: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3963-2: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3963-2: Using manual mapping for full_title from event study_details_arm_1 with value Cerebral Heamodynamics and Orthostatic Response to Upright Posture in Acute Ischaemic Stroke
@@ -6421,6 +6471,8 @@ Trial 3963-2: Mapping final_report_yn to final_report_yn in event postapproval_a
 Skipping annual_reporting_complete (form complete)
 Trial 3963-3: Using manual mapping for trial_no from event study_details_arm_1 with value 3963-3
 Trial 3963-3: Mapping trial_no to trial_no in event eoi_arm_1 with value 3963-3
+Trial 3963-3: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3963-3: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3963-3: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3963-3: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3963-3: Using manual mapping for full_title from event study_details_arm_1 with value Re-Imagining Stroke Environments with Virtual Reality (RiSE-VR)
@@ -6536,6 +6588,8 @@ Trial 3963-4: Mapping letter to ethics_upload in event governance_applica_arm_1 
 Skipping study_details_complete (form complete)
 Trial 3963-4: Using manual mapping for trial_no from event study_details_arm_1 with value 3963-4
 Trial 3963-4: Mapping trial_no to trial_no in event eoi_arm_1 with value 3963-4
+Trial 3963-4: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3963-4: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'ip_y_n')
 Skipping study_intervention_complete (form complete)
 Trial 3963-4: Using manual mapping for registry from event study_details_arm_1 with value 0
@@ -7307,6 +7361,8 @@ Concatenating 90357042 into 3963-5's tracking field.
 Skipping study_details_complete (form complete)
 Trial 3963-5: Using manual mapping for trial_no from event study_details_arm_1 with value 3963-5
 Trial 3963-5: Mapping trial_no to trial_no in event eoi_arm_1 with value 3963-5
+Trial 3963-5: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3963-5: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'ip_y_n')
 Skipping study_intervention_complete (form complete)
 Trial 3963-5: Using manual mapping for registry from event study_details_arm_1 with value 0
@@ -7545,6 +7601,8 @@ Trial 3963-6: Mapping letter to ethics_upload in event governance_applica_arm_1 
 Skipping study_details_complete (form complete)
 Trial 3963-6: Using manual mapping for trial_no from event study_details_arm_1 with value 3963-6
 Trial 3963-6: Mapping trial_no to trial_no in event eoi_arm_1 with value 3963-6
+Trial 3963-6: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3963-6: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3963-6: Using manual mapping for intervention_yn from event study_details_arm_1 with value 2
 Trial 3963-6: Mapping intervention_yn to tga_needed in event governance_applica_arm_1 with value 2
 Couldn't find ('study_details_arm_1', 'ip_y_n')
@@ -7727,6 +7785,8 @@ Trial 3963-7: Mapping name_ethics to ethics_name in event governance_applica_arm
 Skipping study_details_complete (form complete)
 Trial 3963-7: Using manual mapping for trial_no from event study_details_arm_1 with value 3963-7
 Trial 3963-7: Mapping trial_no to trial_no in event eoi_arm_1 with value 3963-7
+Trial 3963-7: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3963-7: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3963-7: Using manual mapping for role from event study_details_arm_1 with value 4
 Trial 3963-7: Mapping role to role in event eoi_arm_1 with value 4
 Trial 3963-7: Using manual mapping for funding_start from event study_details_arm_1 with value 2024-02-20
@@ -8094,6 +8154,8 @@ Trial 3963-8: Mapping prem_used to facilities_use in event eoi_arm_1 with value 
 Skipping study_details_complete (form complete)
 Trial 3963-8: Using manual mapping for trial_no from event study_details_arm_1 with value 3963-8
 Trial 3963-8: Mapping trial_no to trial_no in event eoi_arm_1 with value 3963-8
+Trial 3963-8: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3963-8: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3963-8: Using manual mapping for intervention_yn from event study_details_arm_1 with value 2
 Trial 3963-8: Mapping intervention_yn to tga_needed in event governance_applica_arm_1 with value 2
 Couldn't find ('study_details_arm_1', 'ip_y_n')
@@ -8267,6 +8329,8 @@ Skipping governance_approval_complete (form complete)
 Trial 3963-8: Using manual mapping for other_docs1 from event for_participating_arm_1 with value 123539
 Trial 3964-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3964-1
 Trial 3964-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3964-1
+Trial 3964-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3964-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3964-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3964-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3964-1: Using manual mapping for full_title from event study_details_arm_1 with value A Prospective multicentre, phase 2b randomised controlled double-blind trial, to determine the safety and efficacy of perispinal etanercept on quality of life at 28 days post treatment.
@@ -8500,6 +8564,8 @@ Skipping annual_reporting_complete (form complete)
 Couldn't find ('annual_reporting_arm_1', 'trial_no')
 Trial 3964-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3964-2
 Trial 3964-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3964-2
+Trial 3964-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3964-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3964-2: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3964-2: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3964-2: Using manual mapping for full_title from event study_details_arm_1 with value Screening for Early onset Amyloid Related Cerebral Hemorrhage
@@ -8672,6 +8738,8 @@ Concatenating 1 into 3964-3's tracking field.
 Skipping study_details_complete (form complete)
 Trial 3964-3: Using manual mapping for trial_no from event study_details_arm_1 with value 3964-3
 Trial 3964-3: Mapping trial_no to trial_no in event eoi_arm_1 with value 3964-3
+Trial 3964-3: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3964-3: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3964-3: Using manual mapping for funding_type from event study_details_arm_1 with value 5
 Trial 3964-3: Mapping funding_type to funding_sources in event eoi_arm_1 with value 5
 Trial 3964-3: Using manual mapping for funding_type_other from event study_details_arm_1 with value collaborative partner
@@ -8715,6 +8783,8 @@ Trial 3964-3: Using manual mapping for cgc_appr_comment from event cgc_review_ar
 Concatenating Premises only. into 3964-3's tracking field.
 Trial 3965-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3965-1
 Trial 3965-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3965-1
+Trial 3965-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3965-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3965-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3965-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3965-1: Using manual mapping for full_title from event study_details_arm_1 with value Very Early Start to Personalised Upper limb Rehabilitation after stroke (VESPUR)
@@ -8969,6 +9039,8 @@ Concatenating 1 into 3965-2's tracking field.
 Skipping study_details_complete (form complete)
 Trial 3965-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3965-2
 Trial 3965-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3965-2
+Trial 3965-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3965-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3965-2: Using manual mapping for funding_type from event study_details_arm_1 with value 1
 Trial 3965-2: Mapping funding_type to funding_sources in event eoi_arm_1 with value 1
 Skipping data_storage_and_archive_complete (form complete)
@@ -8979,6 +9051,8 @@ Skipping cgc_review_complete (form complete)
 Couldn't find ('cgc_review_arm_1', 'trial_no')
 Trial 3967-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3967-1
 Trial 3967-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3967-1
+Trial 3967-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3967-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3967-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3967-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3967-1: Using manual mapping for full_title from event study_details_arm_1 with value NCT03897062 "Suvorexant in the Management Comorbid Sleep Disorder and Alcohol Dependence"
@@ -9092,6 +9166,8 @@ Skipping data_storage_and_archive_complete (form complete)
 Couldn't find ('data_storage_and_a_arm_1', 'trial_no')
 Trial 3968-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3968-1
 Trial 3968-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3968-1
+Trial 3968-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3968-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3968-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3968-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3968-1: Using manual mapping for full_title from event study_details_arm_1 with value Does cerebral ictal hyperperfusion differ between subtypes of Temporal Lobe Epilepsy
@@ -9133,6 +9209,8 @@ IFMAP no match: 0 not in {'1': ('governance_applica_arm_1', 'oseas_sites_num_2',
 Skipping study_contracts_complete (form complete)
 Trial 3968-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3968-2
 Trial 3968-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3968-2
+Trial 3968-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3968-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3968-2: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3968-2: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3968-2: Using manual mapping for full_title from event study_details_arm_1 with value MRI markers of treatment outcomes in focal epilepsy
@@ -9174,6 +9252,8 @@ IFMAP no match: 0 not in {'1': ('governance_applica_arm_1', 'oseas_sites_num_2',
 Skipping study_contracts_complete (form complete)
 Trial 3969-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3969-1
 Trial 3969-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3969-1
+Trial 3969-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3969-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3969-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-01
 Trial 3969-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-01
 Trial 3969-1: Using manual mapping for full_title from event study_details_arm_1 with value A pilot study to advance brain structural magnetic resonance imaging (MRI) to improve the accuracy of early prion disease diagnosis
@@ -9332,6 +9412,8 @@ Trial 3969-1: Using manual mapping for final_report_yn from event annual_reporti
 Trial 3969-1: Mapping final_report_yn to final_report_yn in event postapproval_arm_1 with value 0
 Trial 3970-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3970-1
 Trial 3970-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3970-1
+Trial 3970-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3970-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3970-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3970-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3970-1: Using manual mapping for short_title from event study_details_arm_1 with value Screening neuropsychological function in the first seizure clinic
@@ -9465,6 +9547,8 @@ Trial 3970-2: Mapping name_ethics to ethics_name in event governance_applica_arm
 Skipping study_details_complete (form complete)
 Trial 3970-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3970-2
 Trial 3970-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3970-2
+Trial 3970-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3970-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'ip_y_n')
 Skipping study_intervention_complete (form complete)
 Trial 3970-2: Using manual mapping for registry from event study_details_arm_1 with value 0
@@ -9755,6 +9839,8 @@ Trial 3970-3: Mapping name_ethics to ethics_name in event governance_applica_arm
 Skipping study_details_complete (form complete)
 Trial 3970-3: Using manual mapping for trial_no from event study_details_arm_1 with value 3970-3
 Trial 3970-3: Mapping trial_no to trial_no in event eoi_arm_1 with value 3970-3
+Trial 3970-3: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3970-3: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'ip_y_n')
 Skipping study_intervention_complete (form complete)
 Trial 3970-3: Using manual mapping for registry from event study_details_arm_1 with value 0
@@ -9847,6 +9933,8 @@ Trial 3970-3: Using manual mapping for cgc_appr_comment from event cgc_review_ar
 Concatenating Discussions with Chris Tailby 13/2/24 for confirmation into 3970-3's tracking field.
 Trial 3971-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3971-1
 Trial 3971-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3971-1
+Trial 3971-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3971-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3971-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3971-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3971-1: Using manual mapping for full_title from event study_details_arm_1 with value Cu-ATSM with QSM Imaging to predict Motor Neurone Disease Outcomes
@@ -9901,6 +9989,8 @@ IFMAP no match: 0 not in {'1': ('governance_applica_arm_1', 'oseas_sites_num_2',
 Skipping study_contracts_complete (form complete)
 Trial 3971-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3971-2
 Trial 3971-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3971-2
+Trial 3971-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3971-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3971-2: Using manual mapping for today from event study_details_arm_1 with value 2021-12-01
 Trial 3971-2: Mapping today to today in event governance_applica_arm_1 with value 2021-12-01
 Trial 3971-2: Using manual mapping for full_title from event study_details_arm_1 with value Deferiprone to Delay Dementia (The 3D study): a clinical proof of concept study
@@ -10062,6 +10152,8 @@ Trial 3971-3: Mapping name_ethics to ethics_name in event governance_applica_arm
 Skipping study_details_complete (form complete)
 Trial 3971-3: Using manual mapping for trial_no from event study_details_arm_1 with value 3971-3
 Trial 3971-3: Mapping trial_no to trial_no in event eoi_arm_1 with value 3971-3
+Trial 3971-3: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3971-3: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3971-3: Using manual mapping for letter from event study_details_arm_1 with value 123609
 Trial 3971-3: Mapping letter to ethics_upload in event governance_applica_arm_1 with value 123609
 Couldn't find ('study_details_arm_1', 'ip_y_n')
@@ -10401,6 +10493,8 @@ Trial 3971-3: Using manual mapping for annual_andor_safety from event annual_rep
 Trial 3971-3: Mapping annual_andor_safety to annual_or_safety in event postapproval_arm_1 with value 1
 Trial 3972-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3972-1
 Trial 3972-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3972-1
+Trial 3972-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3972-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3972-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3972-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3972-1: Using manual mapping for full_title from event study_details_arm_1 with value SENSe CONNECT - NHMRC Partnership
@@ -10438,6 +10532,8 @@ Trial 3972-1: Mapping username to username in event governance_applica_arm_1 wit
 Couldn't find ('study_details_arm_1', 'active_closed')
 Trial 3972-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3972-2
 Trial 3972-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3972-2
+Trial 3972-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3972-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3972-2: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3972-2: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3972-2: Using manual mapping for full_title from event study_details_arm_1 with value Improving arm function after stroke using task specific training
@@ -10517,6 +10613,8 @@ Skipping governance_application_complete (form complete)
 Couldn't find ('for_participating_arm_1', 'trial_no')
 Trial 3972-3: Using manual mapping for trial_no from event study_details_arm_1 with value 3972-3
 Trial 3972-3: Mapping trial_no to trial_no in event eoi_arm_1 with value 3972-3
+Trial 3972-3: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3972-3: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3972-3: Using manual mapping for today from event study_details_arm_1 with value 2021-12-22
 Trial 3972-3: Mapping today to today in event governance_applica_arm_1 with value 2021-12-22
 Trial 3972-3: Using manual mapping for short_title from event study_details_arm_1 with value Tailor and Connect (new Ideas grant)
@@ -10713,8 +10811,12 @@ Trial 3972-4: Mapping chief_investigator to ix_label_1 in event eoi_arm_1 with v
 Skipping study_details_complete (form complete)
 Trial 3972-4: Using manual mapping for trial_no from event study_details_arm_1 with value 3972-4
 Trial 3972-4: Mapping trial_no to trial_no in event eoi_arm_1 with value 3972-4
+Trial 3972-4: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3972-4: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3973-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3973-1
 Trial 3973-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3973-1
+Trial 3973-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3973-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3973-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3973-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3973-1: Using manual mapping for full_title from event study_details_arm_1 with value Identifying Early Clinical and Biological Markers in Dominantly Inherited NonAlzheimer Dementias
@@ -10830,6 +10932,8 @@ Skipping governance_application_complete (form complete)
 Skipping governance_approval_complete (form complete)
 Trial 3974-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3974-1
 Trial 3974-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3974-1
+Trial 3974-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3974-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3974-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3974-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3974-1: Using manual mapping for full_title from event study_details_arm_1 with value Role of vitamin D3 in regulating the numbers of platelet-derived microparticles circulating in human plasma
@@ -10866,6 +10970,8 @@ Skipping governance_application_complete (form complete)
 Skipping governance_approval_complete (form complete)
 Trial 3975-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3975-1
 Trial 3975-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3975-1
+Trial 3975-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3975-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3975-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3975-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3975-1: Using manual mapping for full_title from event study_details_arm_1 with value Development of MRI imaging protocols
@@ -10969,6 +11075,8 @@ Trial 3975-1: Using manual mapping for other_docs1 from event for_participating_
 Trial 3975-1: Using manual mapping for other_docs2 from event for_participating_arm_1 with value 123647
 Trial 3976-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3976-1
 Trial 3976-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3976-1
+Trial 3976-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3976-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3976-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-08
 Trial 3976-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-08
 Trial 3976-1: Using manual mapping for full_title from event study_details_arm_1 with value AMBroxol therapy for ALS (AMBALS) trial: a double-blind, randomised, placebo-controlled Phase 2 clinical trial of ambroxol for ALS
@@ -11193,6 +11301,8 @@ Concatenating 1 into 3976-2's tracking field.
 Skipping study_details_complete (form complete)
 Trial 3976-2: Using manual mapping for trial_no from event study_details_arm_1 with value 3976-2
 Trial 3976-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 3976-2
+Trial 3976-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3976-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('data_storage_and_a_arm_1', 'hidden_contact_1')
 Skipping data_storage_and_archive_complete (form complete)
 Couldn't find ('data_storage_and_a_arm_1', 'trial_no')
@@ -11221,6 +11331,8 @@ Trial 3976-2: Using manual mapping for cgc_appr_comment from event cgc_review_ar
 Concatenating Analysis of blood and CSF on Florey premises. into 3976-2's tracking field.
 Trial 3977-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3977-1
 Trial 3977-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3977-1
+Trial 3977-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3977-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3977-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3977-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3977-1: Using manual mapping for full_title from event study_details_arm_1 with value Neuroimaging biomarkers of injury, prognosis and recovery in mild traumatic brain injury
@@ -11315,6 +11427,8 @@ Skipping governance_application_complete (form complete)
 Skipping governance_approval_complete (form complete)
 Trial 3978-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3978-1
 Trial 3978-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3978-1
+Trial 3978-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3978-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3978-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3978-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3978-1: Using manual mapping for full_title from event study_details_arm_1 with value Advanced quantitative MRI analysis in degenerative cervical myelopathy
@@ -11346,6 +11460,8 @@ Skipping governance_application_complete (form complete)
 Skipping governance_approval_complete (form complete)
 Trial 3979-1: Using manual mapping for trial_no from event study_details_arm_1 with value 3979-1
 Trial 3979-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 3979-1
+Trial 3979-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 3979-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 3979-1: Using manual mapping for today from event study_details_arm_1 with value 2021-12-21
 Trial 3979-1: Mapping today to today in event governance_applica_arm_1 with value 2021-12-21
 Trial 3979-1: Using manual mapping for short_title from event study_details_arm_1 with value Cortical plasticity following nerve transfers for Tetraplegia
@@ -11398,6 +11514,8 @@ Couldn't find ('annual_reporting_arm_1', 'trial_no')
 Skipping study_intervention_complete (form complete)
 Trial 4017-1: Using manual mapping for trial_no from event study_details_arm_1 with value 4017-1
 Trial 4017-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 4017-1
+Trial 4017-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4017-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4017-1: Using manual mapping for username from event study_details_arm_1 with value governance_dd
 Trial 4017-1: Mapping username to username in event governance_applica_arm_1 with value governance_dd
 Trial 4017-1: Using manual mapping for today from event study_details_arm_1 with value 2022-03-31
@@ -11457,6 +11575,8 @@ Trial 4027-1: Mapping letter to ethics_upload in event governance_applica_arm_1 
 Skipping study_details_complete (form complete)
 Trial 4027-1: Using manual mapping for trial_no from event study_details_arm_1 with value 4027-1
 Trial 4027-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 4027-1
+Trial 4027-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4027-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'ip_y_n')
 Skipping study_intervention_complete (form complete)
 Trial 4027-1: Using manual mapping for registry from event study_details_arm_1 with value 0
@@ -11533,6 +11653,8 @@ Couldn't find ('study_details_arm_1', 'funding_yn')
 Skipping study_details_complete (form complete)
 Trial 4032-1: Using manual mapping for trial_no from event study_details_arm_1 with value 4032-1
 Trial 4032-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 4032-1
+Trial 4032-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4032-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4032-1: Using manual mapping for funding_administer from event study_details_arm_1 with value 2
 Trial 4032-1: Mapping funding_administer to funding_admin in event eoi_arm_1 with value 2
 Trial 4032-1: Using manual mapping for funding_other from event study_details_arm_1 with value The University of Melbourne
@@ -11720,6 +11842,8 @@ Concatenating 0 into 4049-1's tracking field.
 Skipping study_details_complete (form complete)
 Trial 4049-1: Using manual mapping for trial_no from event study_details_arm_1 with value 4049-1
 Trial 4049-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 4049-1
+Trial 4049-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4049-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4049-2: Using manual mapping for username from event study_details_arm_1 with value govern_hpardoe
 Trial 4049-2: Mapping username to username in event governance_applica_arm_1 with value govern_hpardoe
 Trial 4049-2: Using manual mapping for today from event study_details_arm_1 with value 2022-09-06
@@ -11734,6 +11858,8 @@ Couldn't find ('study_details_arm_1', 'funding_yn')
 Skipping study_details_complete (form complete)
 Trial 4049-2: Using manual mapping for trial_no from event study_details_arm_1 with value 4049-2
 Trial 4049-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 4049-2
+Trial 4049-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4049-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4049-2: Using manual mapping for role from event study_details_arm_1 with value 3
 Trial 4049-2: Mapping role to role in event eoi_arm_1 with value 3
 Trial 4049-2: Using manual mapping for prem_contact from event study_details_arm_1 with value Heath Pardoe
@@ -11790,6 +11916,8 @@ Concatenating 1 into 4049-3's tracking field.
 Skipping study_details_complete (form complete)
 Trial 4049-3: Using manual mapping for trial_no from event study_details_arm_1 with value 4049-3
 Trial 4049-3: Mapping trial_no to trial_no in event eoi_arm_1 with value 4049-3
+Trial 4049-3: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4049-3: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4049-4: Using manual mapping for username from event study_details_arm_1 with value govern_hpardoe
 Trial 4049-4: Mapping username to username in event governance_applica_arm_1 with value govern_hpardoe
 Trial 4049-4: Using manual mapping for today from event study_details_arm_1 with value 2022-09-06
@@ -11825,6 +11953,8 @@ Concatenating 1 into 4049-4's tracking field.
 Skipping study_details_complete (form complete)
 Trial 4049-4: Using manual mapping for trial_no from event study_details_arm_1 with value 4049-4
 Trial 4049-4: Mapping trial_no to trial_no in event eoi_arm_1 with value 4049-4
+Trial 4049-4: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4049-4: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4049-5: Using manual mapping for username from event study_details_arm_1 with value governance_dd
 Trial 4049-5: Mapping username to username in event governance_applica_arm_1 with value governance_dd
 Trial 4049-5: Using manual mapping for today from event study_details_arm_1 with value 2024-08-12
@@ -11854,6 +11984,8 @@ Concatenating 1 into 4049-5's tracking field.
 Skipping study_details_complete (form complete)
 Trial 4049-5: Using manual mapping for trial_no from event study_details_arm_1 with value 4049-5
 Trial 4049-5: Mapping trial_no to trial_no in event eoi_arm_1 with value 4049-5
+Trial 4049-5: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4049-5: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4049-5: Using manual mapping for prem_email from event study_details_arm_1 with value heath.pardoe@florey.edu.au
 Trial 4049-5: Mapping prem_email to prim_email_1 in event eoi_arm_1 with value heath.pardoe@florey.edu.au
 Couldn't find ('study_details_arm_1', 'prem_affiliation')
@@ -11975,6 +12107,8 @@ Trial 4069-1: Mapping ethics_p to ethics_approval_yn in event governance_applica
 Skipping study_details_complete (form complete)
 Trial 4069-1: Using manual mapping for trial_no from event study_details_arm_1 with value 4069-1
 Trial 4069-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 4069-1
+Trial 4069-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4069-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'ip_y_n')
 Skipping study_intervention_complete (form complete)
 Trial 4069-1: Using manual mapping for registry from event study_details_arm_1 with value 1
@@ -12058,6 +12192,8 @@ Trial 4072-1: Mapping short_title to short_title in event eoi_arm_1 with value T
 Skipping study_details_complete (form complete)
 Trial 4072-1: Using manual mapping for trial_no from event study_details_arm_1 with value 4072-1
 Trial 4072-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 4072-1
+Trial 4072-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4072-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'funding_yn')
 Trial 4072-1: Using manual mapping for funding_administer from event study_details_arm_1 with value 1
 Trial 4072-1: Mapping funding_administer to funding_admin in event eoi_arm_1 with value 1
@@ -12134,6 +12270,8 @@ Trial 4072-2: Mapping short_title to short_title in event eoi_arm_1 with value T
 Skipping study_details_complete (form complete)
 Trial 4072-2: Using manual mapping for trial_no from event study_details_arm_1 with value 4072-2
 Trial 4072-2: Mapping trial_no to trial_no in event eoi_arm_1 with value 4072-2
+Trial 4072-2: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4072-2: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4072-3: Using manual mapping for username from event study_details_arm_1 with value govern_test
 Trial 4072-3: Mapping username to username in event governance_applica_arm_1 with value govern_test
 Trial 4072-3: Using manual mapping for today from event study_details_arm_1 with value 2022-11-24
@@ -12147,6 +12285,8 @@ Trial 4072-3: Mapping short_title to short_title in event eoi_arm_1 with value T
 Skipping study_details_complete (form complete)
 Trial 4072-3: Using manual mapping for trial_no from event study_details_arm_1 with value 4072-3
 Trial 4072-3: Mapping trial_no to trial_no in event eoi_arm_1 with value 4072-3
+Trial 4072-3: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4072-3: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Skipping study_contracts_complete (form complete)
 Couldn't find ('contracts_and_insu_arm_1', 'trial_no')
 Skipping data_storage_and_archive_complete (form complete)
@@ -12200,6 +12340,8 @@ Trial 4072-4: Mapping short_title to short_title in event eoi_arm_1 with value T
 Skipping study_details_complete (form complete)
 Trial 4072-4: Using manual mapping for trial_no from event study_details_arm_1 with value 4072-4
 Trial 4072-4: Mapping trial_no to trial_no in event eoi_arm_1 with value 4072-4
+Trial 4072-4: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4072-4: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'funding_yn')
 Trial 4072-4: Using manual mapping for cont_change_yn from event for_participating_arm_1 with value 1
 Concatenating 1 into 4072-4's tracking field.
@@ -12219,6 +12361,8 @@ Trial 4072-5: Mapping short_title to short_title in event eoi_arm_1 with value T
 Skipping study_details_complete (form complete)
 Trial 4072-5: Using manual mapping for trial_no from event study_details_arm_1 with value 4072-5
 Trial 4072-5: Mapping trial_no to trial_no in event eoi_arm_1 with value 4072-5
+Trial 4072-5: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4072-5: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4072-5: Using manual mapping for data_premises from event study_details_arm_1 with value 1
 Concatenating 1 into 4072-5's tracking field.
 Couldn't find ('study_details_arm_1', 'funding_yn')
@@ -12288,6 +12432,8 @@ Trial 4164-1: Mapping ethics_p to ethics_approval_yn in event governance_applica
 Skipping study_details_complete (form complete)
 Trial 4164-1: Using manual mapping for trial_no from event study_details_arm_1 with value 4164-1
 Trial 4164-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 4164-1
+Trial 4164-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4164-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'ip_y_n')
 Trial 4164-1: Using manual mapping for ip_type from event study_details_arm_1 with value mega-dose intravenous sodium ascorbate
 Trial 4164-1: Mapping ip_type to investproduct_name in event governance_applica_arm_1 with value mega-dose intravenous sodium ascorbate
@@ -12351,6 +12497,8 @@ Trial 4190-1: Mapping chief_investigator to ix_label_1 in event eoi_arm_1 with v
 Skipping study_details_complete (form complete)
 Trial 4190-1: Using manual mapping for trial_no from event study_details_arm_1 with value 4190-1
 Trial 4190-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 4190-1
+Trial 4190-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4190-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Couldn't find ('study_details_arm_1', 'trial_type')
 Couldn't find ('study_details_arm_1', 'active_closed')
 Trial 4190-1: Using manual mapping for funding_start from event study_details_arm_1 with value 2024-03-31
@@ -12468,6 +12616,8 @@ Trial 4193-1: Mapping name_ethics to ethics_name in event governance_applica_arm
 Skipping study_details_complete (form complete)
 Trial 4193-1: Using manual mapping for trial_no from event study_details_arm_1 with value 4193-1
 Trial 4193-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 4193-1
+Trial 4193-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4193-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4193-1: Using manual mapping for intervention_yn from event study_details_arm_1 with value 1
 Trial 4193-1: Mapping intervention_yn to tga_needed in event governance_applica_arm_1 with value 1
 Couldn't find ('study_details_arm_1', 'ip_y_n')
@@ -12577,6 +12727,8 @@ Trial 4196-1: Mapping role to role in event eoi_arm_1 with value 4
 Skipping study_details_complete (form complete)
 Trial 4196-1: Using manual mapping for trial_no from event study_details_arm_1 with value 4196-1
 Trial 4196-1: Mapping trial_no to trial_no in event eoi_arm_1 with value 4196-1
+Trial 4196-1: Mapping trial_no to florey_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
+Trial 4196-1: Mapping trial_no to ethics_yn in event eoi_arm_1 with value 1 (PLUS MAPPING)
 Trial 4196-1: Using manual mapping for short_title from event study_details_arm_1 with value NED
 Trial 4196-1: Mapping short_title to short_title in event eoi_arm_1 with value NED
 Trial 4196-1: Using manual mapping for chief_investigator from event study_details_arm_1 with value Anne-Louise Ponsonby

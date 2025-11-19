@@ -3,7 +3,7 @@ import requests
 import numpy as np
 import json
 import redcap_data
-from redcap_data import FileUploadInfo
+from redcap_data import FileUploadInfo, get_radio_map, get_all_fields_of_type
 from map_generator import get_basic_map
 
 
@@ -69,6 +69,35 @@ output_field_types = dict(x for x in output_data_dictionary[1:, 0:4:3])
 
 # used to check for '<form>_complete' records
 form_complete_fields = np.unique(input_data_dictionary[1:, 1] + "_complete")
+
+
+# Used to ensure radio fields are mapped correctly
+radio_in = get_radio_map(in_token, False)
+radio_out = get_radio_map(out_token, True)
+
+def radio_map(field, mapped_field, value):
+    
+    if field not in radio_in:
+        return value
+    
+    if value in radio_in[field]:
+        label_data = radio_in[field][value]
+    else:
+        print(f"Can't map radio: no {value} from {field} in {radio_in[field]}")
+        return value
+        
+    if label_data not in radio_out[mapped_field]:
+        custom_pending = False
+        for label in radio_out[mapped_field]:
+            if 'Pending' in label:
+                label_data = label
+                custom_pending = True
+                break
+        if not custom_pending:
+            label = 'Pending'
+            
+    new_id = radio_out[mapped_field][label_data]
+    return new_id
 
 if not os.path.exists("logs/"):
     os.makedirs("logs/")
@@ -142,9 +171,11 @@ if_tracking = {}
 
 manual_event_fields = {}
 
+
+
 with open("logs/maplog.txt", "w+") as o:
 
-    for field_data in input_import.json():
+    for field_data in in_json:
         trial_no = field_data["record"]
         field = field_data["field_name"]
         event = field_data["redcap_event_name"]
@@ -257,7 +288,7 @@ with open("logs/maplog.txt", "w+") as o:
                                 "redcap_repeat_instrument": "" if field_data["redcap_repeat_instrument"] == "" else repeat_instrument,
                                 "redcap_repeat_instance": field_data["redcap_repeat_instance"],
                                 "field_name": mapped_field,
-                                "value": value,
+                                "value": radio_map(field, mapped_field, value),
                             }
                         )
                         o.write(f"IF CLAUSE: setting {mapped_event} {mapped_field} to {value}")
@@ -342,7 +373,7 @@ with open("logs/maplog.txt", "w+") as o:
                         "redcap_repeat_instrument": repeat_instrument,
                         "redcap_repeat_instance": field_data["redcap_repeat_instance"],
                         "field_name": mapped_field_name,
-                        "value": value,
+                        "value": radio_map(field, mapped_field_name, value),
                     }
                 )
         else:
@@ -354,6 +385,7 @@ with open("logs/event_field_map.json", "w+") as o:
 with open("logs/output_data.json", "w+") as o:
     json.dump(out_json, o)
 
+print("Beginning upload...")
 data = {
     "token": out_token,
     "content": "record",
@@ -366,6 +398,7 @@ data = {
     "returnContent": "count",
     "returnFormat": "json",
 }
+
 input_import = requests.post(f'https://{"testcap" if testcap else "redcap"}.florey.edu.au/api/', data=data)
 print("Data Export HTTP Status: " + str(input_import.status_code))
 if str(input_import.status_code) != "200":
@@ -379,6 +412,8 @@ if str(input_import.status_code) != "200":
     quit()
 else:
     print(f"Successfully imported {input_import.json()["count"]} records")
+
+_ = input("Press enter to begin file transfer\n")
 
 print("Beginning file transfer")
 

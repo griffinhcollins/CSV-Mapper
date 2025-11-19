@@ -46,13 +46,13 @@ def get_basic_map():
         "amendment_applications" : "governance_amendments"
     }
 
-    # wip = ["final_report_yn", "ethics_approval_yn"]
+    # wip = ["investproduct_gmp", "check_insurance", "full_au_sites_num"]
     wip = []
 
     map = {}
     with open("logs/map_gen_logs.txt", "w+") as l:
         for row in rows:
-            if row[2] == row[3] == "" or row[2] == "NOT USED" or row[1] in wip:
+            if row[2] == row[3] == "" or row[2] == "NOT USED" or row[3] in wip:
                 continue
 
             mappings = []
@@ -112,6 +112,13 @@ def get_basic_map():
                     l.write(str(row))
                     continue
             
+            
+            # Bonus mappings that apply to all studies
+            if row[1] == "trial_no":
+                mappings.append((f"{v3_event_lookup["eoi"]}", "florey_yn", "1"))
+                mappings.append((f"{v3_event_lookup["eoi"]}", "ethics_yn", "1"))
+                
+                
             map[(v2_event_lookup[row[0]], str(row[1]))] = (instrument_fixers[row[0]] if row[0] in instrument_fixers else row[0], mappings)
 
     return map

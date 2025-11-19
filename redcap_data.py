@@ -173,7 +173,59 @@ def export_file(token, filedata: FileUploadInfo, filepath, testcap=False):
             print("Wrote error to file_upload_errors.txt")
     return r
 
+def get_all_fields_of_type(token, field_type):
+    all_fields = get_dictionary(token)
+    field_types = dict(x for x in all_fields[1:, 0:4:3])
+    matching_fields = []
+    for k in field_types:
+        if field_types[k] == field_type:
+            matching_fields.append(k)
+    return matching_fields
+    
+    
+def get_radio_map(token, label_key):
+    radio_fields = get_all_fields_of_type(token, "radio")
+    
+    data = {
+        'token': token,
+        'content': 'metadata',
+        'format': 'json',
+        'returnFormat': 'json',
+        'fields': radio_fields 
+    }
+    r = requests.post('https://redcap.florey.edu.au/api/',data=data)
+    print('HTTP Status: ' + str(r.status_code))
+    j = r.json()
+    radio_map = {}
+    for field in j:
+        choices = field["select_choices_or_calculations"]
+        if ("Yes" in choices):
+            id_map = {}
+            for label in choices.split("|"):
+                label = label.strip()
+                if label_key:
+                    id_map[label[3:]] = label[0]
+                else:
+                    id_map[label[0]] = label[3:]
+            radio_map[field["field_name"]] = id_map
+    return radio_map
+
 
 if __name__ == "__main__":
-    print(get_dictionary("2A7FB1BE285EA4CC00BB2920F97F5865"))
+    rows = []
+    with open("Map of Variables from V2 to V3 v4.csv") as f:
+        reader = csv.reader(f, dialect="excel")
+        for row in reader:
+            rows.append(row)
+            
+    rows = np.array(rows[7:])
+    
+    in_project = get_radio_map("AAF352AC73709A6AE89C45881A227FBB", False)
+    out_project = get_radio_map("490755B7DA96CF2C7392DD9D2879238D", False)
+    
+    for row in rows:
+        if row[1] in in_project and row[2] != "NOT USED" and row[3] in out_project:
+            print(f"{row[1]} labels: {in_project[row[1]]} map to {row[3]} labels: {out_project[row[3]]} ")
+    
+    
     # project_xml('2A7FB1BE285EA4CC00BB2920F97F5865')
