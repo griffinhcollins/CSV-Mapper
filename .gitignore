@@ -9,5 +9,5 @@ logs/*
 *.docx
 *.pdf
 *.doc
-saved_folders/*
+saved_files/*
 __pycache__/*
