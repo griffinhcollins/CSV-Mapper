@@ -3,13 +3,7 @@ import numpy as np
 import re
 import json
 
-"""
-TODO
-- 
-
-"""
-
-
+# Using a csv created by Sarah, generates a map from one REDCap project's fields to another's
 def generate_map(map_file_name):
     rows = []
     with open(map_file_name) as f:
@@ -19,7 +13,7 @@ def generate_map(map_file_name):
 
     rows = np.array(rows[7:])  # Skip headers
 
-    v2_event_lookup = {  # Convert
+    v2_event_lookup = {  # Convert instruments to arms
         "study_details": "study_details_arm_1",
         "study_intervention": "study_details_arm_1",
         "study_registration": "study_details_arm_1",
@@ -34,7 +28,7 @@ def generate_map(map_file_name):
         "amendment_applications": "for_participating_arm_1",
     }
 
-    v3_event_lookup = {  # Map
+    v3_event_lookup = {  # Convert instruments to arms
         "eoi": "eoi_arm_1",
         "eoi_clinic_rooms": "eoi_arm_1",
         "mapping_meeting": "eoi_arm_1",
@@ -46,7 +40,6 @@ def generate_map(map_file_name):
         "team_credentials": "tracking_tools_arm_1",
         "study_status": "tracking_tools_arm_1",
     }
-    # IF = '0' OR '1' OR '2', [eoi_arm_1][role]; IF = '3', CONCATENATE IN [tracking_tools_arm_1][notes_for_followup]: Save as [field_name][content]; IF = '4', Response changed: '4' = '3'
 
     instrument_fixers = (
         {  # amendment applications is the old repeat instrument, governance is what it matches to
@@ -54,25 +47,23 @@ def generate_map(map_file_name):
         }
     )
 
-    # wip = ["investproduct_gmp", "check_insurance", "full_au_sites_num"]
+    # used to skip rows that aren't working yet so they don't throw errors and the rest can be tested. empty means everything is expected to work
     wip = []
 
     map = {}
-    with open("logs/map_gen_logs.txt", "w+") as l:
+    with open("logs/map_gen_logs.txt", "w") as l:
         for row in rows:
             if row[2] == row[3] == "" or row[2] == "NOT USED" or row[3] in wip:
                 continue
 
             mappings = []
-            if len(row) > 4 and row[4] != "":
-                # Special cases (remap and plus)
+            if len(row) > 4 and row[4] != "": # column 4 is only used when additional operations need to be made, separated by //
                 cases = str.split(row[4], "//")
                 for case in cases:
                     case = str.strip(case)
                     if str.startswith(case, "Plus"):
-                        # Do something else as well
-                        # check for IF
-                        if_i = case.find("IF")
+                        # Do the actual mapping from columns 0-3, then also do this
+                        if_i = case.find("IF") # IF clauses are all various mutations of "if this row is x, set another field to y"
                         if if_i != -1:
                             clause = str.strip(case[if_i:])
                             groups = parse_if(clause)
@@ -84,26 +75,27 @@ def generate_map(map_file_name):
                             ifmap[x] = (mapped_event, mapped_field, y)
                             mappings.append(("IF", ifmap))
                         else:
-
-                            plusdata = re.findall(".*\[(.*)\]\[(.*)\] = '(\d)'", row[4])[0]
+                            # Regex designed specifically for Sarah's syntax
+                            plusdata = re.findall(r".*\[(.*)\]\[(.*)\] = '(\d)'", row[4])[0]
                             mappings.append(
                                 (v3_event_lookup[plusdata[0]], plusdata[1], plusdata[2])
                             )
                     elif str.startswith(case, "Responses changed:"):
+                        # Unpack the syntax from the csv into a python list, then send it off with a "remap" tag so the reader knows what to do with it
                         casemap = case[18:].replace("'", "").replace(" ", "").split(",")
                         mappings.append(("remap", casemap))
                     else:
                         print(f"Not mapped: |{case}|")
 
             if row[2] in v3_event_lookup.keys():
-                # Regular mapping
+                # Regular mapping, each row has its own mappings, ie when the reader is executing, it will look up each mapping for the input fields (rows 0 and 1) then copy them to the mapped fields (rows 2 and 3)
                 mappings.append((f"{v3_event_lookup[row[2]]}", str(row[3])))
             else:
                 # Special cases (concat, manual and IF)
                 if str.startswith(row[2], "CONCATENATE"):
-                    mappings.append(("concat", ""))
+                    mappings.append(("concat", "")) # Used for fields that are too complex to automate, they are all concatenated in [tracking_tools_arm_1][notes_for_followup]
                 elif str.startswith(row[2], "FOR MANUAL ALLOCATION"):
-                    mappings.append(("manual", ""))
+                    mappings.append(("manual", "")) # Used for files that aren't to be mapped anywhere. They will instead be saved in ./saved_files
                 elif str.startswith(row[2], "IF"):
                     # Do something else depending on the value
                     # mapping[0] is "IF", mapping[1] is the map
@@ -121,11 +113,11 @@ def generate_map(map_file_name):
                         ifmap[x] = (mapped_event, mapped_field, y)
                     mappings.append(("IF", ifmap))
 
-                else:
+                else: # Something has gone wrong, write it to logs
                     l.write(str(row))
                     continue
 
-            # Bonus mappings that apply to all studies
+            # Bonus mappings that apply to all studies, every study has a trial_no row so this will be added to each study exactly once
             if row[1] == "trial_no":
                 mappings.append((f"{v3_event_lookup["eoi"]}", "florey_yn", "1"))
                 mappings.append((f"{v3_event_lookup["eoi"]}", "ethics_yn", "1"))
@@ -204,8 +196,3 @@ if __name__ == "__main__":
     print(generate_map("Map of Variables from V2 to V3 (FINAL - 220126).csv"))
 
 
-"""
-NOTES:
-- Need mapped event and mapped field for row 18
-- Check_insurance
-"""

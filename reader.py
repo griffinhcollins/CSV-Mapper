@@ -28,11 +28,6 @@ from map_generator import generate_map
 
 """
 TODO
-- Custom IF for concatenate for role    DONE
-- Test new map                          DONE
-- More branching for all                 TODO
-- role special IF                       DONE
-- check numeric is there too            DONE
 """
 
 
@@ -81,7 +76,8 @@ radio_out = get_radio_map(out_token, True)
 
 
 
-
+# Radio fields sometimes have the same labels applied to different IDs. e.g. if the original has "0: Yes, 1: No" and the new one has "0: No, 1: Yes"
+# This goes through labels and tries to match them up where possible
 def radio_map(field, mapped_field, value):
 
     if field not in radio_in:
@@ -201,35 +197,38 @@ out_json = []
 
 # Input fields that are mapped if numeric, otherwise sent to study details
 enforce_numeric = ["no_sites"]
+overwrite = False
 
-with open("logs/maplog.txt", "w+") as logs:
-
+with open("logs/maplog.txt", "w") as logs:
+    # Go through every single field in the input project
     for field_data in in_json:
         trial_no = field_data["record"]
         if trial_no in trials_to_skip:
             continue
-        if trial_no in existing_trials and False:
+        if overwrite and trial_no in existing_trials:
             print(f"SKIP OVERWRITE: {trial_no} has existing data in the target project. Skipping!")
             trials_to_skip.add(trial_no)
             continue
 
         field = field_data["field_name"]
         event = field_data["redcap_event_name"]
-
         value = field_data["value"]
+        
+        # Used for logging
         if event in manual_event_fields.keys():
             manual_event_fields[event].append(field)
         else:
             manual_event_fields[event] = []
 
+        # All exported records will be marked as incomplete, to be gone through later and confirmed
         if field in form_complete_fields:
             logs.write(f"Skipping {field} (form complete)\n")
             continue
+        
         if value is None or value == "":
             logs.write(f"Skipping {field} (input empty)\n")
             continue
 
-        # print(f"{field} of type {input_fields[field]}")
         mapped_event_name = ""
         mapped_field_name = ""
         if (
@@ -249,15 +248,15 @@ with open("logs/maplog.txt", "w+") as logs:
             logs.write(
                 f"Trial {trial_no}: Using manual mapping for {field} from event {event} with value {value}\n"
             )
-            repeat_instrument = event_field_map[(event, field)][0]
+            repeat_instrument = event_field_map[(event, field)][0] # Get the instrument, only used for repeating events
             for mapping in event_field_map[(event, field)][1]:
-                remap = True  # As of yet we don't know if this is the main mapping (in which case we want to remap) or a plus mapping (in which case we can toggle this off)
+                remap = True  # As of yet we don't know if this is the main mapping (in which case we want to remap if a remap is present) or a plus mapping (in which case we will toggle this off)
                 manual_save = False
                 
                 if mapping[0] == "remap":
                     continue  # the existence of a remap does nothing on its own - it'll be used when the main mapping is parsed
                 if mapping[0] == "concat" or (field in enforce_numeric and not value.isnumeric()):
-                    # See if [tracking_tools_arm_1][notes_for_followup] exists yet for this trial
+                    # See if [tracking_tools_arm_1][notes_for_followup] exists yet for this trial, that's where all concat fields are sent to
                     if trial_no not in concat_tracking:
                         concat_tracking[trial_no] = len(out_json)
                         out_json.append(
@@ -271,7 +270,7 @@ with open("logs/maplog.txt", "w+") as logs:
                             }
                         )
                     logs.write(f"Concatenating {value} into {trial_no}'s tracking field.\n")
-                    out_json[concat_tracking[trial_no]]["value"] += f"{field}: {value}\n"
+                    out_json[concat_tracking[trial_no]]["value"] += f"{field}: {value}\n" # Keep track of one concatenating value per trial, adding more to it if more things are added
                     continue
 
                 if mapping[0] == "manual":
@@ -289,13 +288,12 @@ with open("logs/maplog.txt", "w+") as logs:
                     )
                     break
                 if mapping[0] == "IF":
-                    # Unpack the ifmap
-                    print(mapping)
+                    # Unpack the ifmap. For more information about where these ifmaps come from, see map_generator.py
                     ifmap = mapping[1]
                     for k in ifmap.keys():
                         ifmap_key = k
                     if type(ifmap_key) is tuple:
-                        if ifmap_key[0] == 'instance':
+                        if ifmap_key[0] == 'instance': # Some IFs use the repeat instance to decide whether to map or not. They're tagged with this if they are. 
                             if int(ifmap_key[1].strip()) == field_data["redcap_repeat_instance"]:
                                 logs.write(f"IFMAP repeat instrument fired!, {field_data["redcap_repeat_instance"]} == {ifmap_key[1]}\n")
                                 for k in ifmap.keys():
@@ -304,7 +302,7 @@ with open("logs/maplog.txt", "w+") as logs:
                                 logs.write(f"IFMAP repeat instrument didn't fire, {field_data["redcap_repeat_instance"]} != {ifmap_key[1]}\n")
                                 continue
                         elif ifmap_key[0] == 'foreign':
-                            # Ok we need to look up a completely different event and field
+                            # This tag means we need to look up a completely different event and field
                             foreign_field = ifmap_key[1]
                             # And check if it's equal to either of the given values
                             foreign_values = ifmap_key[2]
@@ -317,28 +315,30 @@ with open("logs/maplog.txt", "w+") as logs:
                             for row in in_json:
                                 if row["record"] == trial_no and row["redcap_event_name"] == foreign_field[0] + "_arm_1" and row["field_name"] == foreign_field[1]:
                                     if row["value"] in list(foreign_values):
-                                        for k in ifmap.keys(): # It's a match, let the IF go through
+                                        for k in ifmap.keys(): # It's a match, let the IF go through by setting the key to the value, meaning it will match and allow the IF to fire
                                             k = value
                                         logs.write(f"Foreign clause detected, {foreign_field} does match {foreign_values}, firing\n")
                                         break
                                     else:
                                         logs.write(f"Foreign clause detected, {foreign_field} does not match {foreign_values}, skipping\n")
                                         # not a match, skip
+                                        # By not changing anything, the IF won't go through, as a tuple will never be the value
                                         break
                             continue
-                        elif value not in ifmap_key: # A tuple of numbers with no indicator means we've got a <> case, meaning we want to map if the value isn't any of the values in the tuple
+                        elif value not in ifmap_key: # A tuple of numbers with no tag means we've got a <> case, meaning we want to map if the value isn't any of the values in the tuple
                             logs.write(f"IFMAP <> clause detected, {value} not in {ifmap_key}, making valid\n")
-                            for k in ifmap.keys():
+                            for k in ifmap.keys(): # It's a match, let the IF go through by setting the key to the value, meaning it will match and allow the IF to fire
                                 k = value
                         else:
                             logs.write(f"IFMAP <> clause detected, {value} IS in {ifmap_key}, skipping\n")
+                            # By not changing anything, the IF won't go through, as a tuple will never be the value
                             continue
                     if value not in ifmap:
                         logs.write(
                             f"IFMAP no match: {value} not in {ifmap}, skipping with no action\n"
                         )
                         continue
-                    if ifmap[value][2] == "this":
+                    if ifmap[value][2] == "this": # 'this' tag means instead of a set 'y' to put into the mapped event and field, we grab the value from the field and event the ifmap gives us
                         ifmap[value[2]] = value
                         logs.write(
                             f"'this' swap: 'this' swapped for {value} for [{ifmap[value][0]}][{ifmap[value][1]}]\n"
@@ -360,7 +360,7 @@ with open("logs/maplog.txt", "w+") as logs:
                                 }
                             )
                         logs.write(
-                            f"IF CLAUSE: Incrementing [application][oseas_sites_num_2] by 1 for {trial_no} from {event} {field}.\n"
+                            f"IF CLAUSE: Incrementing [application][oseas_sites_num_2] by 1 for {trial_no} from {event} {field}\n"
                         )
                         out_json[if_tracking[trial_no]]["value"] += 1
                     else:
@@ -379,7 +379,7 @@ with open("logs/maplog.txt", "w+") as logs:
                                 "value": radio_map(field, mapped_field, value),
                             }
                         )
-                        logs.write(f"IF CLAUSE: setting {mapped_event} {mapped_field} to {value}")
+                        logs.write(f"IF CLAUSE: setting {mapped_event} {mapped_field} to {value}\n")
                     continue
 
                 # Regular or plus mapping
@@ -441,7 +441,7 @@ with open("logs/maplog.txt", "w+") as logs:
                             for relation in remapcheck[1]:
                                 if str.startswith(relation, field_data["value"]):
                                     logs.write(
-                                        f"Replacement mapping: swapping {value} for {relation[2:]}.\n"
+                                        f"Replacement mapping: swapping {value} for {relation[2:]}\n"
                                     )
                                     if relation[2:] == "concat":
                                         if trial_no not in concat_tracking:
@@ -456,7 +456,7 @@ with open("logs/maplog.txt", "w+") as logs:
                                                     "value": "",
                                                 }
                                             )
-                                        logs.write(f"Concatenating {value} into {trial_no}'s tracking field.\n")
+                                        logs.write(f"Concatenating {value} into {trial_no}'s tracking field\n")
                                         out_json[concat_tracking[trial_no]]["value"] += f"{field}: {value}\n"
                                         break
                                     value = relation[2:]
@@ -464,7 +464,7 @@ with open("logs/maplog.txt", "w+") as logs:
                                     break
                             if not mapped:
                                 logs.write(
-                                    f"Skipping unexpected replacement mapping input of {value}.\n"
+                                    f"Skipping unexpected replacement mapping input of {value}\n"
                                 )
                                 value = "NOTUSED"
                                 break
