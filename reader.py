@@ -197,7 +197,7 @@ out_json = []
 
 # Input fields that are mapped if numeric, otherwise sent to study details
 enforce_numeric = ["no_sites"]
-overwrite = False
+overwrite = True
 
 with open("logs/maplog.txt", "w") as logs:
     # Go through every single field in the input project
@@ -205,7 +205,7 @@ with open("logs/maplog.txt", "w") as logs:
         trial_no = field_data["record"]
         if trial_no in trials_to_skip:
             continue
-        if overwrite and trial_no in existing_trials:
+        if not overwrite and trial_no in existing_trials:
             print(f"SKIP OVERWRITE: {trial_no} has existing data in the target project. Skipping!")
             trials_to_skip.add(trial_no)
             continue
