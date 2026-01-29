@@ -51,7 +51,7 @@ def generate_map(map_file_name):
     wip = []
 
     map = {}
-    with open("logs/map_gen_logs.txt", "w") as l:
+    with open("logs/map_gen_logs.txt", "w+") as l:
         for row in rows:
             if row[2] == row[3] == "" or row[2] == "NOT USED" or row[3] in wip:
                 continue
@@ -133,7 +133,7 @@ def generate_map(map_file_name):
 
 
 def parse_if(clause):
-    print(f"parsing |{clause}|")
+    # print(f"parsing |{clause}|")
     # Go through potential cases
     match = re.match(r"IF = '(.)', Increase \[(.*)\]\[(.*)\]", clause)
     if match is not None:

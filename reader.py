@@ -306,10 +306,6 @@ with open("logs/maplog.txt", "w") as logs:
                             foreign_field = ifmap_key[1]
                             # And check if it's equal to either of the given values
                             foreign_values = ifmap_key[2]
-                            print(foreign_field[0])
-                            print(foreign_field[1])
-                            print(field_data["redcap_event_name"])
-                            print(field_data["field_name"])
                             
                             # First find the field
                             for row in in_json:
@@ -494,8 +490,8 @@ yn = input("Begin upload of non-file data? y/n: ")
 while yn.lower() != "y" and yn.lower() != "n":
     yn = input("Please enter y for yes or n for no: ")
 
-if yn.lower == "y":
-    print("Beginning upload...")
+if yn.lower() == "y":
+    print("Uploading...")
     data = {
         "token": out_token,
         "content": "record",
