@@ -11,3 +11,4 @@ logs/*
 *.doc
 saved_files/*
 __pycache__/*
+tokens.txt
