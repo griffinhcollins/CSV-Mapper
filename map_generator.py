@@ -76,10 +76,17 @@ def generate_map(map_file_name):
                             mappings.append(("IF", ifmap))
                         else:
                             # Regex designed specifically for Sarah's syntax
-                            plusdata = re.findall(r".*\[(.*)\]\[(.*)\] = '(\d)'", row[4])[0]
-                            mappings.append(
-                                (v3_event_lookup[plusdata[0]], plusdata[1], plusdata[2])
-                            )
+                            plusdata = re.findall(r".*\[(.*)\]\[(.*)\((\d)\)\] = '(\d)'", row[4])
+                            if len(plusdata) > 0:
+                                data = plusdata[0]
+                                mappings.append(
+                                    (v3_event_lookup[data[0]], data[1], data[2])
+                                )
+                            else:
+                                plusdata = re.findall(r".*\[(.*)\]\[(.*)\] = '(\d)'", row[4])[0]
+                                mappings.append(
+                                    (v3_event_lookup[plusdata[0]], plusdata[1], plusdata[2])
+                                )
                     elif str.startswith(case, "Responses changed:"):
                         # Unpack the syntax from the csv into a python list, then send it off with a "remap" tag so the reader knows what to do with it
                         casemap = case[18:].replace("'", "").replace(" ", "").split(",")
@@ -193,6 +200,6 @@ def parse_if(clause):
 
 
 if __name__ == "__main__":
-    print(generate_map("Map of Variables from V2 to V3 (FINAL - 220126).csv"))
+    print(generate_map("Map of Variables from V2 to V3 (FINAL - 300126).csv"))
 
 
